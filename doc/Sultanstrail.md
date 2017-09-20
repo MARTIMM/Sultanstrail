@@ -3,16 +3,7 @@
 **Table of contents**
 [TOC]
 
-# Purpose of this project
-
-The question is; 'Why making another application which shows maps, like so many other apps do'. So the application must show something that is different than others. I'll try to point this out in the list below;
-
-* The app is targeted to an audience of walkers and bikers.
-* The app will therefore try to provide information only for this audience. E.g. no POI is provided to find a gas station but will show restaurants, places to  sleep and tourist information wherever possible.
-* The app should be able to show maps when not in a WiFi zone. This means that the maps must be downloaded first.
-* Mobile network might be available and must be usable if user is willing.
-* Through POI links it should be possible to make reservations at hotels, B & B, restaurants etc. Clicking on such a link brings them to a website, e.g. booking.com.
-* Furthermore, this app is also a tool for those who want to register new data for new or existing tracks.
+# Requirements for this project
 
 Because this application is primarily made for a group who are mapping a trail which the [sultans](http://www.sultanstrail.com/) of past times had walked and another wandered by [sufi's](http://sufitrail.com/), the application is mainly build around these tracks. Hopefully, other tracks can be added later on. What can be provided for each of these tracks are the following;
 
