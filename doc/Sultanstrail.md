@@ -1,4 +1,4 @@
-# Sultans trail Project
+# Sultans Trail Project
 
 **Table of contents**
 [TOC]
