@@ -1,0 +1,41 @@
+# Setup for index.sxml using the default options --in=html --out=index
+#------------------------------------------------------------------------------
+[ C ]
+  tracing       = true
+
+[ C.index ]
+  doctype-show  = true
+  xml-show      = false
+
+#------------------------------------------------------------------------------
+[ R.html ]
+#  index         = 'xmllint --html --format - > %op/%of.%oe'
+
+#------------------------------------------------------------------------------
+[ S ]
+  rootpath      = 'www'
+
+[ S.index ]
+  fileext       = 'html'
+
+#------------------------------------------------------------------------------
+[ ML.xml ]
+#  epub2         = 'SxmlLib::EPub::EPub2Builder'
+#  epub3         = 'SxmlLib::EPub::EPub3Builder'
+
+#------------------------------------------------------------------------------
+# Tracing tables
+[ T ]
+#  config-search = false
+  config          = false
+  tables          = true
+  modules         = false
+  parse           = false
+  parse-result    = false
+  file-handling   = true
+
+#------------------------------------------------------------------------------
+#[ X ]
+#  xml-version     = '1.0'
+#  xml-encoding    = 'UTF-8'
+#  xml-standalone  = 'no'

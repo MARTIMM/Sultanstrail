@@ -1,0 +1,114 @@
+# Run 'sxml2xml.pl6 --in=html --out=index Sxml/www/index.sxml'
+
+$html xmlns=http://www.w3.org/1999/xhtml xml:lang=en [
+  # ===========================================================================
+  $!SxmlCore.comment [=
+    Author: Marcel Timmerman
+    License: ...
+    Copyright: ...
+  ]
+
+  $head [
+    $meta charset=UTF-8
+
+    # Let jquery know about the device width
+    $meta name=viewport
+          content="width=device-width, height=device-height, initial-scale=1"
+
+    $link rel=stylesheet type=text/css href=css/ol.css
+    $link rel=stylesheet type=text/css href=js/jquery.mobile.min.css
+    $link rel=stylesheet type=text/css href=css/index.css
+
+    $title [ Sultans Trail ]
+  ]
+
+  $body [
+    # =========================================================================
+    #  Main Page
+
+    $div data-role=page id=main-page data-fullscreen=1 data-theme=a [
+
+      $div data-role=header [
+        $h1 class=orange [Sultans Trail]
+      ]
+
+      $div Data-role=content class=ui-content [
+        $div id=mymap class=map
+
+        $a href=#page-history [Historic background] &nbsp; $strong id=message $br
+        $a href=#page-about [About]
+      ]
+    ]
+
+    # =========================================================================
+    #  Example 1 historic background
+
+    $div data-role=page id=page-history data-fullscreen=1 data-theme=a [
+
+      $div data-role=header [
+        $h1 [ Location Lutjebroek ]
+      ]
+
+      $div data-role=content [
+        $p id=acc [
+          $p [
+            Very nice surroundings with view on the meadows of past times.
+          ]
+          $br
+          $a href='#main-page' data-rel=close [Close]
+        ]
+      ]
+    ]
+
+    # =========================================================================
+    #  Example 1 panel about
+
+    $div data-role=page id=page-about data-fullscreen=1 data-theme=a [
+
+      $div data-role=header [
+        $h1 [ The Sultans Trail Team ]
+      ]
+
+      $div data-role=content [
+        $p id=acc [
+          $br
+          $h2 [ Developers ]
+          $ul [
+            $li [ Marcel Timmerman ]
+          ]
+
+          $h2 [ Trail Blazers ]
+          $ul [
+            $li [ Iris Bezuijen ]
+            $li [ Sedat Cakir ]
+            $li [ Team Sultanstrail and Sufitrail ]
+          ]
+
+          $br
+          $a href='#main-page' data-rel=close [Close]
+        ]
+      ]
+    ]
+
+    # =========================================================================
+    #  Loading of javascript program and libraries at the end
+
+#    $script src=cordova.js
+    $script id=jquery src=js/jquery.min.js
+    $script id=jqm-trans-disable [!
+      /* For having a faster transition */
+      $(document).on(
+        "mobileinit",
+        function() {
+        	$.mobile.defaultPageTransition = "none";
+        	$.mobile.defaultDialogTransition = "none";
+        }
+      );
+    !]
+
+    $script src=js/jquery.mobile.min.js
+    $script src=js/ol.js
+#    $script src=js/goog/base.js
+    $script src=js/index.js
+  ]
+]
