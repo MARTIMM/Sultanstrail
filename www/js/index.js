@@ -2,7 +2,7 @@
    License: ...
    Copyright: ...
 */
-var app = {
+var SultansTrailMobileApp = {
 
   // ==========================================================================
   mapLayers:      [],
@@ -10,6 +10,8 @@ var app = {
   mapFeatures:    [],
   mapView:        '',
   map:            '',
+  geolocation:    '',
+  count:          0,
 
   // ==========================================================================
   makeItHappen: function() {
@@ -49,7 +51,7 @@ var app = {
       this
     );
 
-    // Listen to geo locater
+    // get the geo locater
     this.geolocation = new ol.Geolocation( {
       // Get the current map projection
       projection: this.mapView.getProjection(),
@@ -57,31 +59,26 @@ var app = {
       tracking: true
     } );
 
-/*
-    goog.events.listen(
-      this.geolocation, goog.events.EventType.CHANGE,   // is same as 'change'
-      this.locationListener, false, this
-    );
-*/
+    // and listen to the change events
+    this.geolocation.on( "change", this.locationListener, this);
+
     console.log("started");
   },
 
   // ==========================================================================
-  geolocation: '',
-  count: 0,
   locationListener: function (event) {
+
+console.log(event);
 
     this.mapView.setCenter(this.geolocation.getPosition());
     this.mapView.setZoom(18);
 
     $("#message").text('Map changed: ' + this.geolocation.getPosition());
     this.count++;
-    if( this.count > 2 ) {
-/*
-      goog.events.unlisten( this.geolocation, goog.events.EventType.CHANGE,
-        this.locationListener, false, this
-      );
-*/
+
+    // being a test turn it off after a few times
+    if( this.count > 3 ) {
+      this.geolocation.un( "change", this.locationListener, this);
     }
   },
 
@@ -191,4 +188,4 @@ var app = {
 };
 
 // jQuery way of run when DOM is loaded and ready
-$( function(){ app.makeItHappen(); } );
+$( function(){ SultansTrailMobileApp.makeItHappen(); } );

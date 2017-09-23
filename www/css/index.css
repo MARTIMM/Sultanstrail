@@ -4,9 +4,11 @@
   Copyright: ...
 */
 
+/*
 body {
   background-color:     #ff8f30;
 }
+*/
 
 h1 {
   font-size:            24px;
@@ -17,24 +19,13 @@ h1 {
   text-align:           center;
 }
 
-.orange {
-  color:                #552800;
-}
-
 #mymap {
   height:               500px;
   width:                100%;
   margin:               2px;
 }
 
-/* For avoiding title truncation in wp8 */
-//.ui-header .ui-title {
-//	overflow:            visible !important;
-//}
-
-/* For fixing the absolute position issue for the default cordova gen page*/
-#cjp-accordion1 .app {
-	left:                 5px !important;
-	margin:               5px !important;
-	position:             relative !important;
+.ui-icon-people {
+  background-image: url("images/a-icon-people.png");
+  background-repeat: no-repeat;
 }
