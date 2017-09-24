@@ -27,7 +27,18 @@ Tracks data: Sedat Çakır, Iris Bezuijen, ...
 Points of interest and History: ...
 Map drawing using OpenStreetMap: ...
 
+## Many thanks to
 
+* ![logo](doc/Sultanstrail_Logo-24x24.png) **Sultanstrail**. For their work creating the tracks.
+* ![logo](doc/android02-24x24.png) **Android SDK**. For helping to make the Android application.
+* **Cordova**. To help developing using only Html, Javascript and Css.
+* ![logo](doc/logo70-24x24.png) [**OpenLayers**][OLayers]. To help usng maps.
+* **JQuery** and **JQuery Mobile**. For their javascript framework.
+
+
+
+
+[OLayers]: (http://openlayers.org/)
 [release]: https://github.com/MARTIMM/Library/blob/master/doc/CHANGES.md
 [todo]: https://github.com/MARTIMM/Library/blob/master/doc/TODO.md
 [man]: https://github.com/MARTIMM/Library/blob/master/doc/manual.pdf
