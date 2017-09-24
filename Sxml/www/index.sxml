@@ -33,17 +33,13 @@ $html xmlns=http://www.w3.org/1999/xhtml xml:lang=en [
       $div data-role=panel id=main-page-panel data-position=right
            data-display=overlay [
 
-        $a data-role=button href='#page-history' data-icon=home data-inline=true [history]
+        $a data-role=button href='#page-history' data-icon=home [history]
            # data-iconpos=notext      # [history]
 
-        $br
-        $a data-role=button href='#page-about' data-icon=user data-inline=true [About]
+        $a data-role=button href='#page-about' data-icon=user [About]
            # data-iconpos=notext      # [About]
 
-
-
-        $br
-        $a data-role=button href='' data-icon=power data-inline=true [Exit]
+        $a data-role=button href='' data-icon=power id=exit-bttn [Exit]
            # data-iconpos=notext      # [Exit]
       ]
 
@@ -56,7 +52,7 @@ $html xmlns=http://www.w3.org/1999/xhtml xml:lang=en [
       ]
 
       $strong id=message $br
-      $a data-role=button href='#main-page-panel' data-icon=bars
+      $a data-role=button href='#main-page-panel' data-icon=bars id=bars-bttn
          data-inline=true data-theme=e data-iconpos=notext [ open pane ]
     ]
 

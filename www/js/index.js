@@ -16,6 +16,36 @@ var SultansTrailMobileApp = {
   // ==========================================================================
   makeItHappen: function() {
 
+    // Activate exit button
+    $('#exit-bttn').on(
+      'click',
+      function (e) {
+
+        if ( typeof cordova !== 'undefined' ) {
+          // Deprecated
+          if ( navigator.app ) {
+            alert('exit navigator');
+            navigator.app.exitApp();
+          }
+
+          // Deprecated
+          else if (  navigator.device ) {
+            alert('exit device');
+            navigator.device.exitApp();
+          }
+
+          else if ( typeof app !== 'undefined' ) {
+            alert('exit app');
+            app.exitApp();
+          }
+
+          else {
+            $('#message').text('No mobile device');
+          }
+        }
+      }
+    );
+
     // Load track
 
     // initialize layers, features and view
@@ -23,11 +53,32 @@ var SultansTrailMobileApp = {
     this.addMapFeatures();
     this.setView();
 
+
+    // Make a button panel on OpenLayer map
+/*
+    var barsbttn = $('#bars-bttn');
+    var panel = new ol.Control.Panel({defaultControl: barsbttn});
+    panel.addControls([barsbttn]);
+*/
+
     // show map
     this.map = new ol.Map( {
         target:       'mymap',
         layers:       this.mapLayers,
-        view:         this.mapView
+        view:         this.mapView,
+        controls:     ol.control.defaults( {
+            // @type {olx.control.AttributionOptions}
+            attributionOptions:  ( {
+                collapsible: false
+              }
+            )
+/*
+                  } ).extend( [
+            new app.RotateNorthControl()
+          ]),
+*/
+          }
+        )
       }
     );
 
