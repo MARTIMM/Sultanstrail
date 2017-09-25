@@ -26,39 +26,41 @@ $html xmlns=http://www.w3.org/1999/xhtml xml:lang=en [
   $body [
     # =========================================================================
     # Main Page
-
     $div data-role=page id=main-page data-theme=a [
 
       # This page has a panel where other choices can be made
       $div data-role=panel id=main-page-panel data-position=right
            data-display=overlay [
 
-        $a data-role=button href='#page-history' data-icon=home [history]
+        $a data-role=button href='#page-history' data-icon=home [ history ]
            # data-iconpos=notext      # [history]
 
-        $a data-role=button href='#page-about' data-icon=user [About]
-           # data-iconpos=notext      # [About]
+        $a data-role=button href='#page-track' data-icon=star [
+          Tracks to load
+        ]
 
-        $a data-role=button href='' data-icon=power id=exit-bttn [Exit]
-           # data-iconpos=notext      # [Exit]
+        $a data-role=button href='#page-about' data-icon=user [ About ]
+
+        $a data-role=button href='' data-icon=power id=exit-bttn [ Exit ]
       ]
 
       $div data-role=header [
-        $h1 [Sultans Trail]
+        $h1 [ Sultans Trail ]
       ]
 
       $div data-role=content [
+        $a data-role=button href='#main-page-panel' data-icon=bars id=bars-bttn
+           data-inline=true data-theme=e data-iconpos=notext [ open pane ]
+
         $div id=mymap class=map [ ]
+
+        $strong id=message
       ]
 
-      $strong id=message $br
-      $a data-role=button href='#main-page-panel' data-icon=bars id=bars-bttn
-         data-inline=true data-theme=e data-iconpos=notext [ open pane ]
     ]
 
     # =========================================================================
     # Historic background page
-
     $div data-role=page id=page-history data-theme=a [
 
       $div data-role=header [
@@ -66,12 +68,52 @@ $html xmlns=http://www.w3.org/1999/xhtml xml:lang=en [
       ]
 
       $div data-role=content [
-        $p id=acc [
+        $p [
           $p [
             Very nice surroundings with view on the meadows of past times.
           ]
           $br
           $a href='#main-page' data-rel=close data-role=button
+             data-transition=fade data-icon=arrow-u-l data-inline=true
+             data-theme=e data-iconpos=notext [ Close ]
+        ]
+      ]
+    ]
+
+    # =========================================================================
+    # Track load page
+    $div data-role=page id=page-track data-theme=a [
+
+      $div data-role=header [
+        $h1 [ Load Sultantrail Tracks ]
+      ]
+
+      $div data-role=content [
+        $p [
+          $ul [
+            $li id=track01 [
+              $a class="underline strong" href='#main-page' [
+                track from Vienna to Bratislava
+              ]
+            ]
+            $li id=track02 [
+              $a class="underline strong" href='#main-page' [
+                track to Ajbat
+              ]
+            ]
+            $li id=track03 [
+              $a class="underline strong" href='#main-page' [
+                track to zeleni Raj
+              ]
+            ]
+            $li id=track04 [
+              $a class="underline strong" href='#main-page' [
+                track back and forth to Zandvoort
+              ]
+            ]
+          ]
+          $br
+          $a href='#main-page' data-rel=close
              data-transition=fade data-icon=arrow-u-l data-inline=true
              data-theme=e data-iconpos=notext [Close]
         ]
@@ -80,7 +122,6 @@ $html xmlns=http://www.w3.org/1999/xhtml xml:lang=en [
 
     # =========================================================================
     # About page
-
     $div data-role=page id=page-about data-theme=a [
 
       $div data-role=header [
@@ -112,7 +153,6 @@ $html xmlns=http://www.w3.org/1999/xhtml xml:lang=en [
 
     # =========================================================================
     #  Loading of javascript program and libraries at the end
-
 #    $script src=cordova.js
 
     $script id=jquery src=js/jquery-1.11.1.min.js

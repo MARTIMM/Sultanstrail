@@ -12,14 +12,21 @@ var SultansTrailMobileApp = {
   map:            '',
   geolocation:    '',
   count:          0,
+  trackFiles:     {
+    track01: '1.1 vienna-bratislava.gpx',
+    track02: 'Track 002 ajbat.gpx',
+    track03: 'Track 001 Naar zeleni Raj.gpx',
+    track04:  'zandvoort 2016-05-17_12-58_Tue.gpx'
+  },
 
   // ==========================================================================
   makeItHappen: function() {
 
+    // ------------------------------------------------------------------------
     // Activate exit button
     $('#exit-bttn').on(
       'click',
-      function (e) {
+      function ( e ) {
 
         if ( typeof cordova !== 'undefined' ) {
           // Deprecated
@@ -46,47 +53,70 @@ var SultansTrailMobileApp = {
       }
     );
 
-    // Load track
-
+    // ------------------------------------------------------------------------
     // initialize layers, features and view
     this.addLayers();
     this.addMapFeatures();
     this.setView();
 
-
-    // Make a button panel on OpenLayer map
 /*
+    // ------------------------------------------------------------------------
+    // Make a button panel on OpenLayer map
     var barsbttn = $('#bars-bttn');
     var panel = new ol.Control.Panel({defaultControl: barsbttn});
     panel.addControls([barsbttn]);
 */
 
+    // ------------------------------------------------------------------------
+    // Make series of tracks clickable
+    Object.keys(this.trackFiles).forEach(
+      function ( trackKey ) {
+        $("#" + trackKey).on(
+          'click',
+          { app: SultansTrailMobileApp },
+          function ( e ) {
+            var app = e.data['app'];
+            $('#message').text('load ' + trackKey + ': ' + app.trackFiles[trackKey]);
+            var trackData = app.readTrack( app.trackFiles[trackKey]);
+            alert(trackData);
+          }
+        );
+      }
+    );
+
+    // ------------------------------------------------------------------------
     // show map
     this.map = new ol.Map( {
         target:       'mymap',
         layers:       this.mapLayers,
         view:         this.mapView,
-        controls:     ol.control.defaults( {
-            // @type {olx.control.AttributionOptions}
-            attributionOptions:  ( {
-                collapsible: false
-              }
-            )
+        controls:     [
+          new ol.control.Zoom(),
+
+          new ol.control.Rotate(),
+
+          new ol.control.Attribution( {
+              collapsible: true,
+              collapsed: true,
+              label: 'i',
+              collapselabel: '»'
+            }
+          )
 /*
                   } ).extend( [
             new app.RotateNorthControl()
           ]),
 */
-          }
-        )
+        ]
       }
     );
 
+    // ------------------------------------------------------------------------
     // click on features
     var t = this;
     this.map.on(
       'click',
-      function(e) {
+      function ( e ) {
 //        console.log('event: ' + e + ', target: ', + e.target + ', map: ' + e.map);
 //        var eLoc = t.map.getEventCoordinate(e);
 //        console.log("e loc: " + eLoc);
@@ -102,6 +132,7 @@ var SultansTrailMobileApp = {
       this
     );
 
+    // ------------------------------------------------------------------------
     // get the geo locater
     this.geolocation = new ol.Geolocation( {
       // Get the current map projection
@@ -128,13 +159,13 @@ console.log(event);
     this.count++;
 
     // being a test turn it off after a few times
-    if( this.count > 3 ) {
+    if( this.count > 1 ) {
       this.geolocation.un( "change", this.locationListener, this);
     }
   },
 
   // ==========================================================================
-  setView: function() {
+  setView: function( ) {
 
     // This transformation is what I'm looking for. Longitude/Latitude of
     // Google map of our home.
@@ -145,7 +176,7 @@ console.log(event);
   },
 
   // ==========================================================================
-  addLayers: function() {
+  addLayers: function ( ) {
 
     // Take a standard openstreetmap and a tileset  which shows raster and data
     var s1 = new ol.source.OSM();
@@ -166,7 +197,7 @@ console.log(event);
 
   // ==========================================================================
   // See also https://openlayers.org/en/latest/examples/icon-color.html
-  addMapFeatures: function() {
+  addMapFeatures: function ( ) {
 
     // dataLocation is my own added field. inherited from ol.Object. Retrieve
     // with feature.get('dataLocation')
@@ -231,7 +262,14 @@ console.log(event);
   },
 
   // ==========================================================================
-  transform: function(coordinate) {
+  readTrack: function ( file ) {
+    var reader = new FileReader();
+    reader.readAsText( 'tracks/' + file, 'UTF-8');
+    return reader.result();
+  },
+
+  // ==========================================================================
+  transform: function ( coordinate ) {
 
     return ol.proj.transform( coordinate, 'EPSG:4326', 'EPSG:3857');
   }

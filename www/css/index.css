@@ -25,6 +25,14 @@ h1 {
   margin:               2px;
 }
 
+.underline {
+  text-decoration:      underline black;
+}
+
+.strong {
+  font-weight:          bold;
+}
+
 /*
 .ui-icon-people {
   background-image: url("images/a-icon-people.png");
