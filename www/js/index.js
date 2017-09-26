@@ -12,11 +12,61 @@ var SultansTrailMobileApp = {
   map:            '',
   geolocation:    '',
   count:          0,
+
   trackFiles:     {
-    track01: '1.1 vienna-bratislava.gpx',
+    track01: 'Track 001 Naar zeleni Raj.gpx',
     track02: 'Track 002 ajbat.gpx',
-    track03: 'Track 001 Naar zeleni Raj.gpx',
-    track04:  'zandvoort 2016-05-17_12-58_Tue.gpx'
+    track03: 'Track 003.gpx',
+    track04: 'Track 004 naar Gradiste.gpx',
+    track05: 'Track 005.gpx',
+    track06: 'Track 006.gpx',
+    track07: 'Track 007.gpx',
+    track08: 'Track 008 to Dragoman.gpx',
+    track09: 'Track 009 to Slivnitsa.gpx',
+
+    track10: '1.1 vienna-bratislava.gpx',
+    track11:  'zandvoort 2016-05-17_12-58_Tue.gpx'
+  },
+
+  vector:         new ol.layer.Vector( {
+      source: new ol.source.Vector( {
+          url: './trails/zandvoort 2016-05-17_12-58_Tue.gpx',
+          format: new ol.format.GPX()
+        }
+      )
+    }
+  ),
+
+  style:          {
+    'Point': new ol.style.Style( {
+        image: new ol.style.Circle( {
+            fill:     new ol.style.Fill( { color: 'rgba(255,255,0,0.4)'}),
+            radius:   5,
+            stroke:   new ol.style.Stroke( {
+                color: '#ff0',
+                width: 1
+              }
+            )
+          }
+        )
+      }
+    ),
+    'LineString': new ol.style.Style( {
+        stroke: new ol.style.Stroke( {
+            color: '#f00',
+            width: 3
+          }
+        )
+      }
+    ),
+    'MultiLineString': new ol.style.Style( {
+        stroke: new ol.style.Stroke( {
+            color: '#0f0',
+            width: 3
+          }
+        )
+      }
+    )
   },
 
   // ==========================================================================
@@ -77,8 +127,7 @@ var SultansTrailMobileApp = {
           function ( e ) {
             var app = e.data['app'];
             $('#message').text('load ' + trackKey + ': ' + app.trackFiles[trackKey]);
-            var trackData = app.readTrack( app.trackFiles[trackKey]);
-            alert(trackData);
+            app.readTrack( app, app.trackFiles[trackKey]);
           }
         );
       }
@@ -159,7 +208,7 @@ console.log(event);
     this.count++;
 
     // being a test turn it off after a few times
-    if( this.count > 1 ) {
+    if( this.count > 0 ) {
       this.geolocation.un( "change", this.locationListener, this);
     }
   },
@@ -262,10 +311,42 @@ console.log(event);
   },
 
   // ==========================================================================
-  readTrack: function ( file ) {
+  readTrack: function ( app, file ) {
+
+    this.map.removeLayer(this.vector);
+
+    this.vector = new ol.layer.Vector( {
+        source: new ol.source.Vector( {
+            url: './trails/' + file,
+            format: new ol.format.GPX()
+          }
+        ),
+        style: function ( feature ) {
+          return app.style['LineString'];        // [feature.getGeometry().getType()];
+        }
+      }
+    );
+
+    this.map.addLayer(this.vector);
+//console.log(this.vector);
+
+/*
     var reader = new FileReader();
-    reader.readAsText( 'tracks/' + file, 'UTF-8');
-    return reader.result();
+//    var file = new File('./tracks/' + file);
+//alert('tracks/' + file);
+    reader.onload = function ( e ) {
+      app.__trackData = e.target.result;
+      console.log(app.__trackData);
+    };
+
+    reader.readAsText(
+      new Blob(
+        ['./tracks/' + file],
+        {type: "text/plain;charset=utf-8"}
+      ),
+      'UTF-8'
+    );
+*/
   },
 
   // ==========================================================================

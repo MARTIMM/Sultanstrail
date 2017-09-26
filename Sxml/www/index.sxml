@@ -93,7 +93,7 @@ $html xmlns=http://www.w3.org/1999/xhtml xml:lang=en [
           $ul [
             $li id=track01 [
               $a class="underline strong" href='#main-page' [
-                track from Vienna to Bratislava
+                track to zeleni Raj
               ]
             ]
             $li id=track02 [
@@ -103,15 +103,54 @@ $html xmlns=http://www.w3.org/1999/xhtml xml:lang=en [
             ]
             $li id=track03 [
               $a class="underline strong" href='#main-page' [
-                track to zeleni Raj
+                track 3
               ]
             ]
+
             $li id=track04 [
               $a class="underline strong" href='#main-page' [
-                track back and forth to Zandvoort
+                track to Gradiste
+              ]
+            ]
+            $li id=track05 [
+              $a class="underline strong" href='#main-page' [
+                track 5
+              ]
+            ]
+            $li id=track06 [
+              $a class="underline strong" href='#main-page' [
+                track 6
+              ]
+            ]
+            $li id=track07 [
+              $a class="underline strong" href='#main-page' [
+                track 7
+              ]
+            ]
+            $li id=track08 [
+              $a class="underline strong" href='#main-page' [
+                track to Dragoman
+              ]
+            ]
+            $li id=track09 [
+              $a class="underline strong" href='#main-page' [
+                track to Slivnitsa
+              ]
+            ]
+
+
+            $li id=track10 [
+              $a class="underline strong" href='#main-page' [
+                track from Vienna to Bratislava
+              ]
+            ]
+            $li id=track11 [
+              $a class="underline strong" href='#main-page' [
+                track to Zandvoort
               ]
             ]
           ]
+
           $br
           $a href='#main-page' data-rel=close
              data-transition=fade data-icon=arrow-u-l data-inline=true
@@ -170,6 +209,7 @@ $html xmlns=http://www.w3.org/1999/xhtml xml:lang=en [
 #    !]
 
     $script src=js/jquery-1.5.0.mobile.min.js
+    $script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"
     $script src=js/ol.js
     $script src=js/index.js
   ]
