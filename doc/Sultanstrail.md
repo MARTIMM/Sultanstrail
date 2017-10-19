@@ -59,22 +59,26 @@ gantt
 
   section setup
   create environment using cordova :done, s0, 2017-09-19, 1d
-  create manual, and other docs :active, s1, 2017-09-19, 1d
+  setup manual, and other docs :done, s1, 2017-09-19, 1d
 
   section design
-  write requirements doc        :active, d0, , 2d
-  write design doc              :active, d1, , 10d
-  write manual                  :active, d2, after d0, 10d
+  write requirements doc        :done, req, 2017-10-01, 6d
+  write design doc              :done, des, 2017-10-01, 6d
 
   section Implementation
+  html              :active, html, after des, 2d
+  javascript        :active, js, after des, 30d
   user interface    :active, ui, , 5d
   data structure    :active, ds, , 5d
-  html              :html, after ds, 1d
-  javascript        :js, after html, 20d
+  write manual      : man, after ui, 10d
 
   section Testing
-  test on emulator  :em, after html, 20d
-  test on tablet    :tbl, after html, 20d
+  test in browser   :active, br, after html, 20d
+  test on emulator  :active, em, after html, 20d
+  test on tablet    :active, tbl, after em, 1d
+
+  section Completion
+  publish           : pstore, after man, 5d
 
 ```
 
