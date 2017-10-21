@@ -2,6 +2,24 @@
    License: ...
    Copyright: ...
 */
+//use strict;
+
+goog.provide('SultanstrailMobileApp');
+
+// Synchronous XMLHttpRequest on the main thread is deprecated nowadays
+//var requirePromise = new Promise( function ( resolve, reject) {
+    //goog.require('goog.debug');
+    //goog.require('goog.net.XhrIo');
+    goog.require('goog.events');
+    goog.require('goog.dom');
+
+//    resolve("OK");
+//  }
+//);
+
+
+
+// Application object
 var SultansTrailMobileApp = {
 
   // ==========================================================================
@@ -13,6 +31,7 @@ var SultansTrailMobileApp = {
   geolocation:    '',
   count:          0,
 
+  // Sultanstrail track bundle with parallel routes
   trackFiles:     {
     track01: 'Track 001 Naar zeleni Raj.gpx',
     track02: 'Track 002 ajbat.gpx',
@@ -86,7 +105,7 @@ var SultansTrailMobileApp = {
           }
 
           // Deprecated
-          else if (  navigator.device ) {
+          else if ( navigator.device ) {
             alert('exit device');
             navigator.device.exitApp();
           }
@@ -191,7 +210,12 @@ var SultansTrailMobileApp = {
     } );
 
     // and listen to the change events
-    this.geolocation.on( "change", this.locationListener, this);
+//    this.geolocation.on( "change", this.locationListener, this);
+
+    goog.events.listen(
+      this.geolocation, goog.events.EventType.CHANGE,   // is same as 'change'
+      this.locationListener, false, this
+    );
 
     console.log("started");
   },
@@ -209,7 +233,10 @@ console.log(event);
 
     // being a test turn it off after a few times
     if( this.count > 0 ) {
-      this.geolocation.un( "change", this.locationListener, this);
+//      this.geolocation.un( "change", this.locationListener, this);
+      goog.events.unlisten( this.geolocation, goog.events.EventType.CHANGE,
+        this.locationListener, false, this
+      );
     }
   },
 
@@ -353,9 +380,53 @@ console.log(event);
   transform: function ( coordinate ) {
 
     return ol.proj.transform( coordinate, 'EPSG:4326', 'EPSG:3857');
-  }
+  },
 
+  // ==========================================================================
+  // From http://osgeo-org.1560.x6.nabble.com/Downloading-tiles-to-local-file-system-td4991005.html
+  getTile: function ( x, y, zoom ) {
+    // make tile object. It will hold x, y and path fields
+    var tile = {};
+
+    x = (1 + (x * Math.PI / 180)/ Math.PI)/2;
+
+    tile.x = Math.floor(x*Math.pow(2,zoom));
+    tile.y = Math.floor((1-Math.log(Math.tan(y*Math.PI/180) + 1/Math.cos(y*Math.PI/180))/Math.PI)/2 *Math.pow(2,zoom));
+    tile.path = zoom + '/'+ tile.x + '/'+ tile.y +'.png';
+
+    // return the object
+    return tile;
+  },
+
+  // ==========================================================================
+  // From http://osgeo-org.1560.x6.nabble.com/Downloading-tiles-to-local-file-system-td4991005.html
+  // Get all tiles for given region and zoom level
+  getTiles: function ( bounds, zoom) {
+    var tile_first = this.getTile( bounds.left, bounds.top,zoom);
+    var tile_last = this.getTile( bounds.right, bounds.bottom,zoom);
+
+    var tiles = [];
+    for( x = tile_first.x; x <= tile_last.x; x++) {
+      for( y = tile_first.y; y <= tile_last.y; y++) {
+        tiles.push({'x':x,'y':y,'path': zoom + '/'+ x + '/'+ y +'.png'});
+      }
+    }
+  }
 };
 
-// jQuery way of run when DOM is loaded and ready
-$( function(){ SultansTrailMobileApp.makeItHappen(); } );
+//requirePromise.then( function ( result ) {
+
+//    console.log(result);
+
+    // jQuery way of run when DOM is loaded and ready
+    //$( function(){ SultansTrailMobileApp.makeItHappen(); } );
+    goog.events.listen(
+      document, goog.events.EventType.LOAD,
+      SultansTrailMobileApp.makeItHappen, false, document
+    );
+
+//  }, function ( err ) {
+//
+//    console.log(err);
+//  }
+//);

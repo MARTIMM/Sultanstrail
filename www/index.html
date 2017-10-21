@@ -1,6 +1,77 @@
+`
 <!DOCTYPE html>
-<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"><!--
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<!--
 Author: Marcel Timmerman
 License: ...
 Copyright: ...
---><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="css/ol.css" type="text/css"/><link rel="stylesheet" href="css/jquery-1.5.0.mobile.min.css" type="text/css"/><link rel="stylesheet" href="css/index.css" type="text/css"/><title>Sultans Trail</title></head><body><div id="main-page" data-role="page" data-theme="a"><div id="main-page-panel" data-role="panel" data-position="right" data-display="overlay"><a data-icon="home" href="#page-history" data-role="button">history</a><a data-icon="star" href="#page-track" data-role="button">Tracks to load </a><a data-icon="user" href="#page-about" data-role="button">About</a><a data-icon="power" id="exit-bttn" href="" data-role="button">Exit</a></div><div data-role="header"><h1>Sultans Trail</h1></div><div data-role="content"><a data-icon="bars" id="bars-bttn" href="#main-page-panel" data-role="button" data-iconpos="notext" data-inline="true" data-theme="e">open pane</a><div class="map" id="mymap"></div><strong id="message"></strong></div></div><div id="page-history" data-role="page" data-theme="a"><div data-role="header"><h1>Location Lutjebroek</h1></div><div data-role="content"><p><p>Very nice surroundings with view on the meadows of past times. </p><br/><a data-icon="arrow-u-l" data-transition="fade" data-role="button" href="#main-page" data-iconpos="notext" data-inline="true" data-theme="e" data-rel="close">Close</a></p></div></div><div id="page-track" data-role="page" data-theme="a"><div data-role="header"><h1>Load Sultantrail Tracks</h1></div><div data-role="content"><p><ul><li id="track01"><a href="#main-page" class="underline strong">track to zeleni Raj </a></li><li id="track02"><a href="#main-page" class="underline strong">track to Ajbat </a></li><li id="track03"><a href="#main-page" class="underline strong">track 3 </a></li><li id="track04"><a href="#main-page" class="underline strong">track to Gradiste </a></li><li id="track05"><a href="#main-page" class="underline strong">track 5 </a></li><li id="track06"><a href="#main-page" class="underline strong">track 6 </a></li><li id="track07"><a href="#main-page" class="underline strong">track 7 </a></li><li id="track08"><a href="#main-page" class="underline strong">track to Dragoman </a></li><li id="track09"><a href="#main-page" class="underline strong">track to Slivnitsa </a></li><li id="track10"><a href="#main-page" class="underline strong">track from Vienna to Bratislava </a></li><li id="track11"><a href="#main-page" class="underline strong">track to Zandvoort </a></li></ul><br/><a data-icon="arrow-u-l" data-transition="fade" href="#main-page" data-iconpos="notext" data-inline="true" data-theme="e" data-rel="close">Close</a></p></div></div><div id="page-about" data-role="page" data-theme="a"><div data-role="header"><h1>The Sultans Trail Team</h1></div><div data-role="content"><p id="acc"><br/><h2>Trail Blazers</h2><ul><li>Iris Bezuijen</li><li>Sedat Cakir</li><li>Team Sultanstrail and Sufitrail</li></ul><h2>Developers</h2><ul><li>Marcel Timmerman</li></ul><br/><a data-icon="arrow-u-l" data-transition="fade" data-role="button" href="#main-page" data-iconpos="notext" data-inline="true" data-theme="e" data-rel="close">Close</a></p></div></div><script id="jquery" src="js/jquery-1.11.1.min.js"></script><script src="js/jquery-1.5.0.mobile.min.js"></script><script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script><script src="js/ol.js"></script><script src="js/index.js"></script></body></html>
+-->
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="css/ol.css" type="text/css" />
+  <link rel="stylesheet" href="css/index.css" type="text/css" />
+  <title>Sultans Trail</title>
+</head>
+
+<body>
+  <div id="main-page" data-role="page" data-theme="a">
+    <div id="main-page-panel" data-role="panel" data-position="right" data-display="overlay"><a data-icon="home" href="#page-history" data-role="button">history</a><a data-icon="star" href="#page-track" data-role="button">Tracks to load </a><a data-icon="user" href="#page-about" data-role="button">About</a><a data-icon="power" id="exit-bttn"
+        href="" data-role="button">Exit</a></div>
+    <div data-role="header">
+      <h1>Sultans Trail</h1></div>
+    <div data-role="content"><a data-icon="bars" id="bars-bttn" href="#main-page-panel" data-role="button" data-iconpos="notext" data-inline="true" data-theme="e">open pane</a>
+      <div class="map" id="mymap"></div><strong id="message"></strong></div>
+  </div>
+  <div id="page-history" data-role="page" data-theme="a">
+    <div data-role="header">
+      <h1>Location Lutjebroek</h1></div>
+    <div data-role="content">
+      <p>
+        <p>Very nice surroundings with view on the meadows of past times. </p><br/><a data-icon="arrow-u-l" data-transition="fade" data-role="button" href="#main-page" data-iconpos="notext" data-inline="true" data-theme="e" data-rel="close">Close</a></p>
+    </div>
+  </div>
+  <div id="page-track" data-role="page" data-theme="a">
+    <div data-role="header">
+      <h1>Load Sultantrail Tracks</h1></div>
+    <div data-role="content">
+      <p>
+        <ul>
+          <li id="track01"><a href="#main-page" class="underline strong">track to zeleni Raj </a></li>
+          <li id="track02"><a href="#main-page" class="underline strong">track to Ajbat </a></li>
+          <li id="track03"><a href="#main-page" class="underline strong">track 3 </a></li>
+          <li id="track04"><a href="#main-page" class="underline strong">track to Gradiste </a></li>
+          <li id="track05"><a href="#main-page" class="underline strong">track 5 </a></li>
+          <li id="track06"><a href="#main-page" class="underline strong">track 6 </a></li>
+          <li id="track07"><a href="#main-page" class="underline strong">track 7 </a></li>
+          <li id="track08"><a href="#main-page" class="underline strong">track to Dragoman </a></li>
+          <li id="track09"><a href="#main-page" class="underline strong">track to Slivnitsa </a></li>
+          <li id="track10"><a href="#main-page" class="underline strong">track from Vienna to Bratislava </a></li>
+          <li id="track11"><a href="#main-page" class="underline strong">track to Zandvoort </a></li>
+        </ul><br/><a data-icon="arrow-u-l" data-transition="fade" href="#main-page" data-iconpos="notext" data-inline="true" data-theme="e" data-rel="close">Close</a></p>
+    </div>
+  </div>
+  <div id="page-about" data-role="page" data-theme="a">
+    <div data-role="header">
+      <h1>The Sultans Trail Team</h1></div>
+    <div data-role="content">
+      <p id="acc"><br/>
+        <h2>Trail Blazers</h2>
+        <ul>
+          <li>Iris Bezuijen</li>
+          <li>Sedat Cakir</li>
+          <li>Team Sultanstrail and Sufitrail</li>
+        </ul>
+        <h2>Developers</h2>
+        <ul>
+          <li>Marcel Timmerman</li>
+        </ul><br/><a data-icon="arrow-u-l" data-transition="fade" data-role="button" href="#main-page" data-iconpos="notext" data-inline="true" data-theme="e" data-rel="close">Close</a></p>
+    </div>
+  </div>
+  <!--script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script-->
+  <script src="js/ol.js"></script>
+  <script src="js/goog/base.js"></script>
+  <script src="js/index.js"></script>
+</body>
+
+</html>

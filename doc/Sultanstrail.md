@@ -68,6 +68,7 @@ gantt
   section Implementation
   html              :active, html, after des, 2d
   javascript        :active, js, after des, 30d
+  replace jquery with closure: crit, 2017-10-21, 2d
   user interface    :active, ui, , 5d
   data structure    :active, ds, , 5d
   write manual      : man, after ui, 10d

@@ -11,13 +11,8 @@ $html xmlns=http://www.w3.org/1999/xhtml xml:lang=en [
   $head [
     $meta charset=UTF-8
 
-    # Let jquery know about the device width
-    $meta name=viewport
-          content="width=device-width, initial-scale=1"
-
     # only css load here, scripts are at the end
     $link rel=stylesheet type=text/css href=css/ol.css
-    $link rel=stylesheet type=text/css href=css/jquery-1.5.0.mobile.min.css
     $link rel=stylesheet type=text/css href=css/index.css
 
     $title [ Sultans Trail ]
@@ -194,7 +189,7 @@ $html xmlns=http://www.w3.org/1999/xhtml xml:lang=en [
     #  Loading of javascript program and libraries at the end
 #    $script src=cordova.js
 
-    $script id=jquery src=js/jquery-1.11.1.min.js
+#    $script id=jquery src=js/jquery-1.11.1.min.js
 #    $script src=js/jquery.migrate.min.js
 
 #    $script id=jqm-trans-disable [!
@@ -202,15 +197,16 @@ $html xmlns=http://www.w3.org/1999/xhtml xml:lang=en [
 #      $(document).on(
 #        "mobileinit",
 #        function() {
-#        	$.mobile.defaultPageTransition = "none";
-#        	$.mobile.defaultDialogTransition = "none";
+#        	 $.mobile.defaultPageTransition = "none";
+#        	 $.mobile.defaultDialogTransition = "none";
 #        }
 #      );
 #    !]
 
-    $script src=js/jquery-1.5.0.mobile.min.js
+#    $script src=js/jquery-1.5.0.mobile.min.js
     $script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"
     $script src=js/ol.js
+    $script src=js/goog/base.js
     $script src=js/index.js
   ]
 ]
