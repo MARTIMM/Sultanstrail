@@ -1,22 +1,10 @@
 /* Author: Marcel Timmerman
    License: ...
-   Copyright: ...
+   Copyright: © Sufitrail 2017
 */
 //use strict;
 
 goog.provide('SultanstrailMobileApp');
-
-// Synchronous XMLHttpRequest on the main thread is deprecated nowadays
-//var requirePromise = new Promise( function ( resolve, reject) {
-    //goog.require('goog.debug');
-    //goog.require('goog.net.XhrIo');
-    goog.require('goog.events');
-    goog.require('goog.dom');
-
-//    resolve("OK");
-//  }
-//);
-
 
 
 // Application object
@@ -47,7 +35,7 @@ var SultansTrailMobileApp = {
     track11:  'zandvoort 2016-05-17_12-58_Tue.gpx'
   },
 
-  vector:         new ol.layer.Vector( {
+  vector: new ol.layer.Vector( {
       source: new ol.source.Vector( {
           url: './trails/zandvoort 2016-05-17_12-58_Tue.gpx',
           format: new ol.format.GPX()
@@ -88,39 +76,53 @@ var SultansTrailMobileApp = {
     )
   },
 
+  exitButton: function ( e ) {
+
+    if ( typeof cordova !== 'undefined' ) {
+      // Deprecated
+      if ( navigator.app ) {
+        alert('exit navigator');
+        navigator.app.exitApp();
+      }
+
+      // Deprecated
+      else if ( navigator.device ) {
+        alert('exit device');
+        navigator.device.exitApp();
+      }
+
+      else if ( typeof app !== 'undefined' ) {
+        alert('exit app');
+        app.exitApp();
+      }
+
+      else {
+        goog.dom.setTextContent(
+          goog.dom.getElement('message'),
+          'No mobile device'
+        );
+      }
+    }
+  },
+
+  loadTrack: function ( e ) {
+    var app = e.data['app'];
+    goog.dom.setTextContent(
+      goog.dom.getElement('message'),
+      'load ' + trackKey + ': ' + app.trackFiles[trackKey]
+    );
+    app.readTrack( app, app.trackFiles[trackKey]);
+  },
+
   // ==========================================================================
   makeItHappen: function() {
 
     // ------------------------------------------------------------------------
     // Activate exit button
-    $('#exit-bttn').on(
-      'click',
-      function ( e ) {
-
-        if ( typeof cordova !== 'undefined' ) {
-          // Deprecated
-          if ( navigator.app ) {
-            alert('exit navigator');
-            navigator.app.exitApp();
-          }
-
-          // Deprecated
-          else if ( navigator.device ) {
-            alert('exit device');
-            navigator.device.exitApp();
-          }
-
-          else if ( typeof app !== 'undefined' ) {
-            alert('exit app');
-            app.exitApp();
-          }
-
-          else {
-            $('#message').text('No mobile device');
-          }
-        }
-      }
-    );
+//    goog.events.listen(
+//      goog.dom.getElement('exit-bttn'), goog.events.EventType.CLICK,
+//      this.exitButton, false, this
+//    );
 
     // ------------------------------------------------------------------------
     // initialize layers, features and view
@@ -131,7 +133,7 @@ var SultansTrailMobileApp = {
 /*
     // ------------------------------------------------------------------------
     // Make a button panel on OpenLayer map
-    var barsbttn = $('#bars-bttn');
+    var barsbttn = goog.dom.getElement('bars-bttn');
     var panel = new ol.Control.Panel({defaultControl: barsbttn});
     panel.addControls([barsbttn]);
 */
@@ -140,17 +142,20 @@ var SultansTrailMobileApp = {
     // Make series of tracks clickable
     Object.keys(this.trackFiles).forEach(
       function ( trackKey ) {
-        $("#" + trackKey).on(
-          'click',
-          { app: SultansTrailMobileApp },
-          function ( e ) {
-            var app = e.data['app'];
-            $('#message').text('load ' + trackKey + ': ' + app.trackFiles[trackKey]);
-            app.readTrack( app, app.trackFiles[trackKey]);
-          }
+console.log("TK: " + trackKey);
+console.log("GE: " + goog.dom.getElement(trackKey));
+return;
+        goog.events.listen(
+          goog.dom.getElement(trackKey), goog.events.EventType.CLICK,
+          this.loadTrack, false, this
         );
       }
     );
+
+    // ------------------------------------------------------------------------
+    // build a control to show on map
+    //var openPaneBttn = new goog.ui.Button(
+    //);
 
     // ------------------------------------------------------------------------
     // show map
@@ -161,15 +166,21 @@ var SultansTrailMobileApp = {
         controls:     [
           new ol.control.Zoom(),
 
-          new ol.control.Rotate(),
+          new ol.control.Rotate( {
+              autoHide: false
+            }
+          ),
 
           new ol.control.Attribution( {
               collapsible: true,
-              collapsed: true,
-              label: 'i',
+              collapsed: false,
+              label: 'O',
               collapselabel: '»'
             }
-          )
+          ),
+
+          //new ol.control.Control(
+          //)
 /*
                   } ).extend( [
             new app.RotateNorthControl()
@@ -192,7 +203,10 @@ var SultansTrailMobileApp = {
           e.pixel,
           function( feature, layer) {
             console.log("Feature: " + feature.get('name') + ', id: ' + feature.getId());
-            $("#message").text(feature.get('dataLocation'));
+            goog.dom.setTextContent(
+              goog.dom.getElement("message"),
+              feature.get('dataLocation')
+            );
 //            t.mapView.setCenter(eLoc);
           }
         );
@@ -228,7 +242,10 @@ console.log(event);
     this.mapView.setCenter(this.geolocation.getPosition());
     this.mapView.setZoom(18);
 
-    $("#message").text('Map changed: ' + this.geolocation.getPosition());
+    goog.dom.setTextContent(
+      goog.dom.getElement("message"),
+      'Map changed: ' + this.geolocation.getPosition()
+    );
     this.count++;
 
     // being a test turn it off after a few times
@@ -414,19 +431,6 @@ console.log(event);
   }
 };
 
-//requirePromise.then( function ( result ) {
-
-//    console.log(result);
-
-    // jQuery way of run when DOM is loaded and ready
-    //$( function(){ SultansTrailMobileApp.makeItHappen(); } );
-    goog.events.listen(
-      document, goog.events.EventType.LOAD,
-      SultansTrailMobileApp.makeItHappen, false, document
-    );
-
-//  }, function ( err ) {
-//
-//    console.log(err);
-//  }
-//);
+// http://thanpol.as/javascript/you-dont-need-dom-ready
+// Don't wait for event ready, just place script at the end of <body>
+SultansTrailMobileApp.makeItHappen();

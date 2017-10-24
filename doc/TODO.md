@@ -19,3 +19,8 @@ Other reasons for change are;
   * openlayers mentions it
 
 # Bugs and issues
+
+# Articles
+* [You Don't Need the DOM Ready Event](http://thanpol.as/javascript/you-dont-need-dom-ready)
+* [Practical Considerations, Hypertext Transfer Protocol -- HTTP/1.1]( https://www.w3.org/Protocols/rfc2616/rfc2616-sec8.html#sec8.1.4)
+* [Hypertext Transfer Protocol -- HTTP/1.1](https://www.w3.org/Protocols/rfc2616/rfc2616.html)

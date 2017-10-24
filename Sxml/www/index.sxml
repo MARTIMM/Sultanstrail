@@ -2,11 +2,11 @@
 
 $html xmlns=http://www.w3.org/1999/xhtml xml:lang=en [
   # ===========================================================================
-  $!SxmlCore.comment [=
+  $!SxmlCore.comment [!=
     Author: Marcel Timmerman
     License: ...
-    Copyright: ...
-  ]
+    Copyright: © Sufitrail 2017
+  !]
 
   $head [
     $meta charset=UTF-8
@@ -19,9 +19,20 @@ $html xmlns=http://www.w3.org/1999/xhtml xml:lang=en [
   ]
 
   $body [
+    $div [
+
+      $div id=mymap class=map [ ]
+
+      $strong id=message
+    ]
+
+
+
+$!SxmlCore.comment [!=
+
     # =========================================================================
     # Main Page
-    $div data-role=page id=main-page data-theme=a [
+    $div data-role=page id=main-page [
 
       # This page has a panel where other choices can be made
       $div data-role=panel id=main-page-panel data-position=right
@@ -45,7 +56,7 @@ $html xmlns=http://www.w3.org/1999/xhtml xml:lang=en [
 
       $div data-role=content [
         $a data-role=button href='#main-page-panel' data-icon=bars id=bars-bttn
-           data-inline=true data-theme=e data-iconpos=notext [ open pane ]
+           data-inline=true data-iconpos=notext [ open pane ]
 
         $div id=mymap class=map [ ]
 
@@ -56,7 +67,7 @@ $html xmlns=http://www.w3.org/1999/xhtml xml:lang=en [
 
     # =========================================================================
     # Historic background page
-    $div data-role=page id=page-history data-theme=a [
+    $div data-role=page id=page-history [
 
       $div data-role=header [
         $h1 [ Location Lutjebroek ]
@@ -70,14 +81,14 @@ $html xmlns=http://www.w3.org/1999/xhtml xml:lang=en [
           $br
           $a href='#main-page' data-rel=close data-role=button
              data-transition=fade data-icon=arrow-u-l data-inline=true
-             data-theme=e data-iconpos=notext [ Close ]
+             data-iconpos=notext [ Close ]
         ]
       ]
     ]
 
     # =========================================================================
     # Track load page
-    $div data-role=page id=page-track data-theme=a [
+    $div data-role=page id=page-track [
 
       $div data-role=header [
         $h1 [ Load Sultantrail Tracks ]
@@ -149,14 +160,14 @@ $html xmlns=http://www.w3.org/1999/xhtml xml:lang=en [
           $br
           $a href='#main-page' data-rel=close
              data-transition=fade data-icon=arrow-u-l data-inline=true
-             data-theme=e data-iconpos=notext [Close]
+             data-iconpos=notext [Close]
         ]
       ]
     ]
 
     # =========================================================================
     # About page
-    $div data-role=page id=page-about data-theme=a [
+    $div data-role=page id=page-about [
 
       $div data-role=header [
         $h1 [ The Sultans Trail Team ]
@@ -180,33 +191,27 @@ $html xmlns=http://www.w3.org/1999/xhtml xml:lang=en [
           $br
           $a href='#main-page' data-rel=close data-role=button
              data-transition=fade data-icon=arrow-u-l data-inline=true
-             data-theme=e data-iconpos=notext [Close]
+             data-iconpos=notext [Close]
         ]
       ]
     ]
+
+!] # comment
 
     # =========================================================================
     #  Loading of javascript program and libraries at the end
 #    $script src=cordova.js
 
-#    $script id=jquery src=js/jquery-1.11.1.min.js
-#    $script src=js/jquery.migrate.min.js
-
-#    $script id=jqm-trans-disable [!
-#      /* For having a faster transition */
-#      $(document).on(
-#        "mobileinit",
-#        function() {
-#        	 $.mobile.defaultPageTransition = "none";
-#        	 $.mobile.defaultDialogTransition = "none";
-#        }
-#      );
-#    !]
-
-#    $script src=js/jquery-1.5.0.mobile.min.js
-    $script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"
+#    $script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"
+    $script src="js/polyfill.min.js"
     $script src=js/ol.js
     $script src=js/goog/base.js
+    $script [!=
+      goog.require('goog.events');
+      goog.require('goog.dom');
+      goog.require('goog.ui');
+    !]
     $script src=js/index.js
-  ]
-]
+
+  ] # body
+] # html

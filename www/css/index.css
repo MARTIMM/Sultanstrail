@@ -4,12 +4,14 @@
   Copyright: ...
 */
 
-/*
-body {
-  background-color:     #ff8f30;
+html, body {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  overflow: hidden;
 }
-*/
 
+/*
 h1 {
   font-size:            24px;
   font-weight:          normal;
@@ -18,11 +20,19 @@ h1 {
   padding:              0px;
   text-align:           center;
 }
+*/
 
 #mymap {
+/*
   height:               500px;
   width:                100%;
+*/
   margin:               2px;
+  position:             relative;
+  top:                  0;
+  left:                 0;
+  border:               0;
+  padding:              0;
 }
 
 .underline {
