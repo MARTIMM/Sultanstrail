@@ -1,5 +1,6 @@
+<!--
 [toc]
-
+-->
 # Design, Planning and Progress Document
 
 ## Purpose
@@ -17,7 +18,8 @@ Purpose of wireframes is that it will be visible how the application will look l
   * [x] Map displayed, move around with swipe
     * [ ] Start with overview of whole route
     * [ ] Show sultans trail track
-    * [ ] Show standard features for starting scale of map
+    * [ ] Show features for starting scale of map
+    * [ ] Show dashed line to closest point on the trail when off trail
   * [x] Zoom buttons
     * [x] zooming with buttons
     * [x] zooming by pinching (on mobile device)
@@ -36,15 +38,15 @@ Pressing the responsive button will open a pane from the side to show a menu of 
   * [ ] About, show a page with version, people and contacts
 
 ## Items or problems to think about
-  * Color mapping must match that of the maps printed on paper.
-  * Add ability to choose other color maps for visual impaired or color blind people.
-  * By what license should the project be protected
-  * When clicking on a feature on the map, does the information show in a ballon or on a new page
-  * Feature information
-    * Restaurant - reservation possibility
-    * Hotel etc - booking possibility
-    * Mosque - historic background
-    * City, village - historic background, city elders contact info, etc
+  * [ ] Color mapping must match that of the maps printed on paper.
+  * [ ] Add ability to choose other color maps for visual impaired or color blind people.
+  * [ ] By what license should the project be protected
+  * [ ] When clicking on a feature on the map, does the information show in a ballon or on a new page. Feature information;
+    * [ ] Restaurant - reservation information and facility
+    * [ ] Hotel etc - booking information and facility
+    * [ ] Mosque - historic background
+    * [ ] City, village - historic background, city elders contact info, etci
+
 
 ## Planning
 ```mermaid
