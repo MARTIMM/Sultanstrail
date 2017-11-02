@@ -33,7 +33,6 @@ Map drawing using OpenStreetMap: ...
 * ![logo](doc/android02-24x24.png) **Android SDK**. For helping to make the Android application.
 * **Cordova**. To help developing using only Html, Javascript and Css.
 * ![logo](doc/logo70-24x24.png) [**OpenLayers**][OLayers]. To help using maps.
-* **JQuery** and **JQuery Mobile**. For their javascript framework.
 * **Google Closure**. For their javascript framework.
 
 

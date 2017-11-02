@@ -1,6 +1,6 @@
 # Things to do
 
-## Replace jquery library with closure
+## Replace jquery library with closure, done at 0.2.0
 
 Looking around and being a bit unhappy with the jquery mobile ui I saw this answer on [stackoverflow](https://stackoverflow.com/questions/1690197/what-does-google-closure-library-offer-over-jquery) on the question 'What does Google Closure Library offer over jQuery?' and [here](https://github.com/google/closure-library/wiki/Frequently-Asked-Questions) is also a good text in FAQ.
 

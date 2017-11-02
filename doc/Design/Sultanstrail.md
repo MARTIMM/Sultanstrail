@@ -35,8 +35,6 @@ Many packages and libraries are needed to implement and build the application.
 
 * **Nodejs** to load cordova and other javascript libraries locally
 
-* **Cordova-jquery** jQuery javascript library build with cordova
-
 * **OpenLayers** to show and manipulate layers of maps and other map oriented thingies
 
 * **Javascript** Version 6 or 7.
