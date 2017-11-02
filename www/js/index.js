@@ -18,6 +18,8 @@ var SultansTrailMobileApp = {
   map:            '',
   geolocation:    '',
   count:          0,
+  viewportSize:   { width: 0, height: 0},
+  openMenuBttn:   '',
 
   // Sultanstrail track bundle with parallel routes
   trackFiles:     {
@@ -35,6 +37,7 @@ var SultansTrailMobileApp = {
     track11:  'zandvoort 2016-05-17_12-58_Tue.gpx'
   },
 
+  // ==========================================================================
   vector: new ol.layer.Vector( {
       source: new ol.source.Vector( {
           url: './trails/zandvoort 2016-05-17_12-58_Tue.gpx',
@@ -44,7 +47,8 @@ var SultansTrailMobileApp = {
     }
   ),
 
-  style:          {
+  // ==========================================================================
+  style: {
     'Point': new ol.style.Style( {
         image: new ol.style.Circle( {
             fill:     new ol.style.Fill( { color: 'rgba(255,255,0,0.4)'}),
@@ -76,6 +80,7 @@ var SultansTrailMobileApp = {
     )
   },
 
+  // ==========================================================================
   exitButton: function ( e ) {
 
     if ( typeof cordova !== 'undefined' ) {
@@ -105,6 +110,7 @@ var SultansTrailMobileApp = {
     }
   },
 
+  // ==========================================================================
   loadTrack: function ( e ) {
     var app = e.data['app'];
     goog.dom.setTextContent(
@@ -115,7 +121,84 @@ var SultansTrailMobileApp = {
   },
 
   // ==========================================================================
+  openMenu: function ( e ) {
+    console.log('open menu: ' + e );
+    var menu = document.querySelector('div#tabpane ul.goog-tabpane-tabs');
+    console.log(menu);
+
+    var w = menu.offsetWidth;
+    var h = menu.offsetHeight;
+    var anim = new goog.fx.dom.Resize(
+      menu, [ w, h], [ 200, h], 400, goog.fx.easing.easeOut
+    );
+
+/*
+    goog.events.listen( anim, goog.fx.Transition.EventType.BEGIN, disableButtons);
+    goog.events.listen( anim, goog.fx.Transition.EventType.END, enableButtons);
+*/
+    anim.play();
+  },
+
+  // ==========================================================================
+  closeMenu: function ( e ) {
+    console.log('open menu: ' + e );
+    var menu = document.querySelector('div#tabpane ul.goog-tabpane-tabs');
+    console.log(menu);
+
+    var w = menu.offsetWidth;
+    var h = menu.offsetHeight;
+    var anim = new goog.fx.dom.Resize(
+      menu, [ w, h], [ 0, h], 400, goog.fx.easing.easeOut
+    );
+
+    anim.play();
+  },
+
+  // ==========================================================================
+  openMenuControl: function ( opts ) {
+
+    // 'this' is the Control object! -> use SultansTrailMobileApp
+
+    // build a control to show on map
+    var options = opts || {};
+    var openMenuBttn = goog.dom.createElement('button');
+    openMenuBttn.innerHTML = '<img src="images/responsive.png" />';
+    goog.events.listen(
+      openMenuBttn, goog.events.EventType.CLICK,
+      SultansTrailMobileApp.openMenu, false, SultansTrailMobileApp
+    );
+
+    var buttonContainer = goog.dom.createElement('div');
+    buttonContainer.className = 'open-menu ol-unselectable ol-control';
+    buttonContainer.appendChild(openMenuBttn);
+
+    ol.control.Control.call(
+      this, {
+        element: buttonContainer,
+        target: options.target
+      }
+    );
+  },
+
+  // ==========================================================================
   makeItHappen: function() {
+
+    // ------------------------------------------------------------------------
+    // make a tabpane
+    var tabPane = new goog.ui.TabPane(
+      goog.dom.getElement('tabpane'),
+      goog.ui.TabPane.TabLocation.RIGHT
+    );
+
+    // ------------------------------------------------------------------------
+    // get size of viewport and modify the tabpane to fit
+    this.viewportSize = goog.dom.getViewportSize();
+    console.log(this.viewportSize);
+    goog.style.setSize(
+      goog.dom.getElement('tabpane'),
+      this.viewportSize.width,
+      this.viewportSize.height
+    );
 
     // ------------------------------------------------------------------------
     // Activate exit button
@@ -123,6 +206,19 @@ var SultansTrailMobileApp = {
 //      goog.dom.getElement('exit-bttn'), goog.events.EventType.CLICK,
 //      this.exitButton, false, this
 //    );
+
+    //-------------------------------------------------------------------------
+    // inherit menu control
+    ol.inherits( this.openMenuControl, ol.control.Control);
+
+    //-------------------------------------------------------------------------
+    // listen to click on map tab
+    var maptab = document.querySelector('div#tabpane ul li');
+    console.log(maptab);
+    goog.events.listen(
+      maptab, goog.events.EventType.CLICK,
+      SultansTrailMobileApp.closeMenu, false, SultansTrailMobileApp
+    );
 
     // ------------------------------------------------------------------------
     // initialize layers, features and view
@@ -142,8 +238,8 @@ var SultansTrailMobileApp = {
     // Make series of tracks clickable
     Object.keys(this.trackFiles).forEach(
       function ( trackKey ) {
-console.log("TK: " + trackKey);
-console.log("GE: " + goog.dom.getElement(trackKey));
+//console.log("TK: " + trackKey);
+//console.log("GE: " + goog.dom.getElement(trackKey));
 return;
         goog.events.listen(
           goog.dom.getElement(trackKey), goog.events.EventType.CLICK,
@@ -151,11 +247,6 @@ return;
         );
       }
     );
-
-    // ------------------------------------------------------------------------
-    // build a control to show on map
-    //var openPaneBttn = new goog.ui.Button(
-    //);
 
     // ------------------------------------------------------------------------
     // show map
@@ -178,6 +269,8 @@ return;
               collapselabel: '»'
             }
           ),
+
+          new this.openMenuControl(),
 
           //new ol.control.Control(
           //)

@@ -1,7 +1,7 @@
 /*
   Author: Marcel Timmerman
   License: ...
-  Copyright: ...
+  Copyright: © Sufitrail 2017
 */
 
 html, body {
@@ -21,27 +21,66 @@ h1 {
   text-align:           center;
 }
 */
+#mapContainer {
+  border:               0 solid;
+  margin:               0;
+  height:               100%;
+}
 
 #mymap {
 /*
   height:               500px;
   width:                100%;
 */
-  margin:               2px;
+  height:               100%;
   position:             relative;
+/*
   top:                  0;
   left:                 0;
+*/
   border:               0;
   padding:              0;
+  margin:               0;
 }
 
 .underline {
-  text-decoration:      underline black;
+  text-decoration:      underline;
 }
 
 .strong {
   font-weight:          bold;
 }
+
+.tight-fit {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  height: 100%;
+}
+
+p {
+  padding: 2px;
+}
+
+table#about {
+  margin-left:        20%;
+  margin-right:       80%;
+  width:              80%;
+}
+
+table#about tr th {
+  text-align:         left;
+}
+
+.open-menu {
+  top: 65px;
+  right: .5em;
+}
+/*
+.ol-touch .open-menu {
+  top: 80px;
+}
+*/
 
 /*
 .ui-icon-people {
