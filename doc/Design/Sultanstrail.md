@@ -30,16 +30,12 @@ Many packages and libraries are needed to implement and build the application.
 
 ### A list of what is needed;
 * **Android SDK** to develop android mobile applications
-
 * **Cordova** to pack javascript, html and css into an application
-
 * **Nodejs** to load cordova and other javascript libraries locally
-
 * **OpenLayers** to show and manipulate layers of maps and other map oriented thingies
-
 * **Javascript** Version 6 or 7.
-
-* **Html5**
+* **Html5** to build page
+* **Css3** to style the page
 
 ### Maybe needed
 * **Backbone** javascript lib to have a MVC framework and to communicate with a server
