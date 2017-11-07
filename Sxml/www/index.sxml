@@ -37,25 +37,25 @@ $html xmlns=http://www.w3.org/1999/xhtml xml:lang=en [
         #$p [ ]
       ]
 
+      $!SxmlCore.comment [!
       $div [
         $h2 [ Install ]
-        #$p [
-          $ul [
-            $li id=track01 class=underline [ track to zeleni Raj ]
-            $li id=track02 class=underline [ track to Ajbat ]
-            $li id=track03 class=underline [ track 3 ]
-            $li id=track04 class=underline [ track to Gradiste ]
-            $li id=track05 class=underline [ track 5 ]
-            $li id=track06 class=underline [ track 6 ]
-            $li id=track07 class=underline [ track 7 ]
-            $li id=track08 class=underline [ track to Dragoman ]
-            $li id=track09 class=underline [ track to Slivnitsa ]
+        $ul [
+          $li id=track01 class=underline [ track to zeleni Raj ]
+          $li id=track02 class=underline [ track to Ajbat ]
+          $li id=track03 class=underline [ track 3 ]
+          $li id=track04 class=underline [ track to Gradiste ]
+          $li id=track05 class=underline [ track 5 ]
+          $li id=track06 class=underline [ track 6 ]
+          $li id=track07 class=underline [ track 7 ]
+          $li id=track08 class=underline [ track to Dragoman ]
+          $li id=track09 class=underline [ track to Slivnitsa ]
 
-            $li id=track10 class=underline [ track from Vienna to Bratislava ]
-            $li id=track11 class=underline [ track to Zandvoort ]
-          ]
-        #]
+          $li id=track10 class=underline [ track from Vienna to Bratislava ]
+          $li id=track11 class=underline [ track to Zandvoort ]
+        ]
       ]
+      !]
 
       $div [
         $h2 [ Feature ]
@@ -89,48 +89,39 @@ $html xmlns=http://www.w3.org/1999/xhtml xml:lang=en [
             $tr [ $th [ Sultans Trail Teammates ] ]
             $tr [ $th [ &nbsp; ] ]
             $tr [
-              $th [ Trail Blazers ]
+              $th colspan=2 [ Trail Blazers ]
             ]
             $tr [
-              $td [ Iris Bezuijen ]
-            ]
-            $tr [
-              $td [ Sedat Cakir ]
+              $td [ Sedat Çakir ]
+              $td [ Project leader ]
             ]
 
-#            $tr [ $th [ &nbsp; ] ]
-            $tr [
-              $th [ Map Design and Cartography ]
-            ]
             $tr [
               $td [ Rob Polko ]
+              $td [ Map Design ]
             ]
             $tr [
               $td [ Pijke Wees ]
+              $td [ Cartography ]
             ]
 
-#            $tr [ $th [ &nbsp; ] ]
-            $tr [
-              $th [ Handbook Writer ]
-            ]
             $tr [
               $td [ Merel ]
+              $td [ Handbook Writer ]
             ]
 
-#            $tr [ $th [ &nbsp; ] ]
-            $tr [
-              $th [ Office Manager ]
-            ]
             $tr [
               $td [ Tine Lambers ]
+              $td [ Office Manager ]
             ]
 
-#            $tr [ $th [ &nbsp; ] ]
             $tr [
-              $th [ Developer ]
+              $td [ Iris Bezuijen ]
+              $td [ Web Master ]
             ]
             $tr [
               $td [ Marcel Timmerman ]
+              $td [ Developer ]
             ]
 
             $tr [ $th [ &nbsp; ] ]

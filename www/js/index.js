@@ -20,8 +20,11 @@ var SultansTrailMobileApp = {
   count:          0,
   viewportSize:   { width: 0, height: 0},
   openMenuBttn:   '',
+  sufiTrailTrackGpx: 'zandvoort 2016-05-17_12-58_Tue.gpx',
+  trackGpxDom:    null,
 
   // Sultanstrail track bundle with parallel routes
+  /*
   trackFiles:     {
     track01: 'Track 001 Naar zeleni Raj.gpx',
     track02: 'Track 002 ajbat.gpx',
@@ -36,6 +39,7 @@ var SultansTrailMobileApp = {
     track10: '1.1 vienna-bratislava.gpx',
     track11:  'zandvoort 2016-05-17_12-58_Tue.gpx'
   },
+  */
 
   // ==========================================================================
   vector: new ol.layer.Vector( {
@@ -110,15 +114,17 @@ var SultansTrailMobileApp = {
     }
   },
 
+/*
   // ==========================================================================
-  loadTrack: function ( e ) {
+  loadTrack: function ( gpx-file ) {
     var app = e.data['app'];
     goog.dom.setTextContent(
       goog.dom.getElement('message'),
       'load ' + trackKey + ': ' + app.trackFiles[trackKey]
     );
-    app.readTrack( app, app.trackFiles[trackKey]);
+    app.readTrack();
   },
+*/
 
   // ==========================================================================
   openMenu: function ( e ) {
@@ -132,10 +138,6 @@ var SultansTrailMobileApp = {
       menu, [ w, h], [ 200, h], 400, goog.fx.easing.easeOut
     );
 
-/*
-    goog.events.listen( anim, goog.fx.Transition.EventType.BEGIN, disableButtons);
-    goog.events.listen( anim, goog.fx.Transition.EventType.END, enableButtons);
-*/
     anim.play();
   },
 
@@ -234,6 +236,7 @@ var SultansTrailMobileApp = {
     panel.addControls([barsbttn]);
 */
 
+/*
     // ------------------------------------------------------------------------
     // Make series of tracks clickable
     Object.keys(this.trackFiles).forEach(
@@ -247,6 +250,7 @@ return;
         );
       }
     );
+*/
 
     // ------------------------------------------------------------------------
     // show map
@@ -271,14 +275,6 @@ return;
           ),
 
           new this.openMenuControl(),
-
-          //new ol.control.Control(
-          //)
-/*
-                  } ).extend( [
-            new app.RotateNorthControl()
-          ]),
-*/
         ]
       }
     );
@@ -307,6 +303,9 @@ return;
       this
     );
 
+    this.loadTrack(this.sufiTrailTrackGpx);
+
+/*
     // ------------------------------------------------------------------------
     // get the geo locater
     this.geolocation = new ol.Geolocation( {
@@ -324,9 +323,11 @@ return;
       this.locationListener, false, this
     );
 
-    console.log("started");
+    console.log("application started");
+*/
   },
 
+/*
   // ==========================================================================
   locationListener: function (event) {
 
@@ -349,6 +350,7 @@ console.log(event);
       );
     }
   },
+*/
 
   // ==========================================================================
   setView: function( ) {
@@ -448,10 +450,10 @@ console.log(event);
   },
 
   // ==========================================================================
-  readTrack: function ( app, file ) {
+  loadTrack: function ( file ) {
 
+    var app = this;
     this.map.removeLayer(this.vector);
-
     this.vector = new ol.layer.Vector( {
         source: new ol.source.Vector( {
             url: './trails/' + file,
@@ -465,23 +467,56 @@ console.log(event);
     );
 
     this.map.addLayer(this.vector);
-//console.log(this.vector);
+    this.loadGpxFile(file);
+  },
+
+  // ==========================================================================
+  loadGpxFile: function ( file ) {
+return;
+    var app = this;
+
+    var gpxText = new XMLHttpRequest();
+    goog.events.listen(
+      gpxText,
+      goog.events.EventType.READYSTATECHANGE,
+      function ( e ) {
+//TODO check errors https://developer.mozilla.org/en-US/docs/Web/Events/loadend
+console.log("E: ", e);
+console.log("ET: ", e.target);
+        var trackText = e.target.result;
+console.log( "TT: " + trackText);
+
+        // https://developer.mozilla.org/en-US/docs/Web/Guide/Parsing_and_serializing_XML
+        var parser = new DOMParser();
+        this.trackGpxDom = parser.parseFromString( trackText, "text/xml");
+
+        // http://www.topografix.com/GPX/1/1/
+console.log(this.trackGpxDom);
+console.log(this.trackGpxDom.getElementByName('trkpt'));
+      },
+      false, app
+    );
+
+    // 3rd arg must be true to have it explicitly asynchronous.
+    gpxText.open( "GET", './tracks/' + file, true);
+
 
 /*
     var reader = new FileReader();
-//    var file = new File('./tracks/' + file);
-//alert('tracks/' + file);
-    reader.onload = function ( e ) {
-      app.__trackData = e.target.result;
-      console.log(app.__trackData);
-    };
+    goog.events.listen(
+      reader, goog.events.EventType.LOAD,
+      app.cnvText2Gpx, false, app
+    );
+
+    // start reading, function above is triggered when ready
+    var file = new File();
+    file.name('./tracks/' + file);
 
     reader.readAsText(
-      new Blob(
+      new File(
         ['./tracks/' + file],
         {type: "text/plain;charset=utf-8"}
-      ),
-      'UTF-8'
+      )
     );
 */
   },
