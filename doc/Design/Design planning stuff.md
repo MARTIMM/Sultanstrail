@@ -17,10 +17,12 @@ Purpose of wire frames is that it will be visible how the application will look.
 ![start_page](https://i.imgur.com/84rx86e.png)
   * [x] Map displayed, move around with swipe
     * [x] Map should fill page automatically as well as the other pages
-    * [ ] Show sultans trail track
-    * [ ] Start with overview of whole route
-    * [ ] Show features for starting scale of map
+    * [x] Show sultans trail track
+    * [ ] focus on track
+    * [ ] Re-scale map after showing track for a more or less exact fit
+    * [ ] Map, Menu and buttons must be adjusted when device is rotated
     * [ ] Show dashed line to closest point on the trail when off trail
+    * [ ] Show features for starting scale of map
   * [x] Zoom buttons
     * [x] zooming with buttons
     * [x] zooming by pinching (on mobile device)
@@ -30,18 +32,17 @@ Purpose of wire frames is that it will be visible how the application will look.
   * [x] OSM attribution
   * [x] ![responsive](https://i.imgur.com/AX1bM22.png) Open menu on the right side with some choices
 
-### Pressing Responsive button
+### Pressing Menu button
 Pressing the responsive button will open a pane from the side to show a menu of options.
 
 ![reveal_pane](https://i.imgur.com/LdbdIDN.png) Show menu
 
-  * [x] Map, show map and remove menu when clicked
-  * [ ] Info, show route info
-  * [ ] Install, install track data, parts or whole
-  * [ ] Feature, show history, or other info, opens when feature is clicked
-  * [ ] Start, record your track data
-  * [ ] About, show a page with version, people and contacts
-  * [ ] Exit, close the application
+  * [x] **Map**: show map and remove menu when clicked
+  * [ ] **Info**: show route info
+  * [ ] **Feature** show all of the history, or other info. Is filled when feature is clicked. First a balloon is showed on the map pointing to the feature with text and a 'more ...' on the bottom.
+  * [ ] **Start**: record your track data
+  * [ ] **About**: show a page with version, people and contacts
+  * [ ] **Exit**: close the application
 
 ## Items or problems to think about
   * [ ] Color mapping must match that of the maps printed on paper.
@@ -87,7 +88,7 @@ gantt
 
 |Name|Email|Notes|
 |----|-----|-----|
-| Sedat Cakir | sufitrail@gmail.com | Project leader
+| Sedat Çakir | sufitrail@gmail.com | Project leader
 | Iris Bezuijen | sufitrail@gmail.com | Web Master
 | Rob Polko | rob@sultanstrail.nl | Map Design
 | Tine Lambers | | Office Manager
