@@ -24,7 +24,6 @@ var SultansTrailMobileApp = {
   trackGpxDom:    null,
 
   // Sultanstrail track bundle with parallel routes
-  /*
   trackFiles:     {
     track01: 'Track 001 Naar zeleni Raj.gpx',
     track02: 'Track 002 ajbat.gpx',
@@ -39,17 +38,19 @@ var SultansTrailMobileApp = {
     track10: '1.1 vienna-bratislava.gpx',
     track11:  'zandvoort 2016-05-17_12-58_Tue.gpx'
   },
-  */
 
   // ==========================================================================
-  vector: new ol.layer.Vector( {
+  vector: null,
+  /*
+  new ol.layer.Vector( {
       source: new ol.source.Vector( {
-          url: './trails/zandvoort 2016-05-17_12-58_Tue.gpx',
+          url: './tracks/zandvoort 2016-05-17_12-58_Tue.gpx',
           format: new ol.format.GPX()
         }
       )
     }
   ),
+  */
 
   // ==========================================================================
   style: {
@@ -456,7 +457,7 @@ console.log(event);
     this.map.removeLayer(this.vector);
     this.vector = new ol.layer.Vector( {
         source: new ol.source.Vector( {
-            url: './trails/' + file,
+            url: './tracks/' + file,
             format: new ol.format.GPX()
           }
         ),
@@ -472,14 +473,17 @@ console.log(event);
 
   // ==========================================================================
   loadGpxFile: function ( file ) {
-return;
-    var app = this;
 
-    var gpxText = new XMLHttpRequest();
+    var app = this;
+    // https://xhr.spec.whatwg.org/
+    // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest
+    var gpxTextReq = new XMLHttpRequest();
     goog.events.listen(
-      gpxText,
-      goog.events.EventType.READYSTATECHANGE,
+      gpxTextReq,
+      goog.events.EventType.LOAD,
       function ( e ) {
+
+console.log( "This: ", this);
 //TODO check errors https://developer.mozilla.org/en-US/docs/Web/Events/loadend
 console.log("E: ", e);
 console.log("ET: ", e.target);
@@ -498,8 +502,9 @@ console.log(this.trackGpxDom.getElementByName('trkpt'));
     );
 
     // 3rd arg must be true to have it explicitly asynchronous.
-    gpxText.open( "GET", './tracks/' + file, true);
-
+console.log('./tracks/' + file);
+    gpxTextReq.open( "GET", './tracks/' + file, true);
+    gpxTextReq.send();
 
 /*
     var reader = new FileReader();

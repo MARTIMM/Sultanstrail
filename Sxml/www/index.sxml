@@ -37,9 +37,8 @@ $html xmlns=http://www.w3.org/1999/xhtml xml:lang=en [
         #$p [ ]
       ]
 
-      $!SxmlCore.comment [!
       $div [
-        $h2 [ Install ]
+        $h2 [ Tracks ]
         $ul [
           $li id=track01 class=underline [ track to zeleni Raj ]
           $li id=track02 class=underline [ track to Ajbat ]
@@ -55,7 +54,6 @@ $html xmlns=http://www.w3.org/1999/xhtml xml:lang=en [
           $li id=track11 class=underline [ track to Zandvoort ]
         ]
       ]
-      !]
 
       $div [
         $h2 [ Feature ]
@@ -106,7 +104,7 @@ $html xmlns=http://www.w3.org/1999/xhtml xml:lang=en [
             ]
 
             $tr [
-              $td [ Merel ]
+              $td [ Merel van Essen ]
               $td [ Handbook Writer ]
             ]
 
@@ -146,7 +144,7 @@ $html xmlns=http://www.w3.org/1999/xhtml xml:lang=en [
 #    $script src=cordova.js
 
 #    $script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"
-    $script src="js/polyfill.min.js"
+#    $script src="js/polyfill.min.js"
     $script src=js/ol.js
     $script src=js/goog/base.js
     $script [!=
