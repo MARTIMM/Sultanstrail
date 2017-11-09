@@ -89,9 +89,9 @@ gantt
 |Name|Email|Notes|
 |----|-----|-----|
 | Sedat Çakir | sufitrail@gmail.com | Project leader
-| Iris Bezuijen | sufitrail@gmail.com | Web Master
-| Rob Polko | rob@sultanstrail.nl | Map Design
+| Iris Bezuijen | sufitrail@gmail.com | Web master
+| Rob Polko | rob@sultanstrail.nl | Map design
 | Tine Lambers | | Office Manager
-| Merel | | Writer
+| Merel van Essen | | Writer of handbook
 | Pijke Wees | pijkev@hotmail.com | Cartograaf
-| Marcel Timmerman | mt1957@gmail.com | Application Builder
+| Marcel Timmerman | mt1957@gmail.com | Application builder
