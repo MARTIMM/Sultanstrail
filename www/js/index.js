@@ -20,8 +20,15 @@ var SultansTrailMobileApp = {
   count:          0,
   viewportSize:   { width: 0, height: 0},
   openMenuBttn:   '',
-  sufiTrailTrackGpx: 'zandvoort 2016-05-17_12-58_Tue.gpx',
+
+
+  sufiTrailTrackGpx: 'zandvoort-2016-05-17_12-58_Tue.gpx',
   trackGpxDom:    null,
+  // The valid range of latitude in degrees is -90 and +90 for the southern and northern hemisphere respectively.
+  // Longitude is in the range -180 and +180 specifying coordinates west and east of the Prime Meridian, respectively.
+  trackLat:       { min: 200, max: -200},   // use semi infinites
+  trackLon:       { min: 100, max: -100},
+  trackMiddle:    { lat: 0, lon: 0},
 
   // Sultanstrail track bundle with parallel routes
   trackFiles:     {
@@ -36,7 +43,7 @@ var SultansTrailMobileApp = {
     track09: 'Track 009 to Slivnitsa.gpx',
 
     track10: '1.1 vienna-bratislava.gpx',
-    track11:  'zandvoort 2016-05-17_12-58_Tue.gpx'
+    track11:  'zandvoor 2016-05-17_12-58_Tue.gpx'
   },
 
   // ==========================================================================
@@ -44,7 +51,7 @@ var SultansTrailMobileApp = {
   /*
   new ol.layer.Vector( {
       source: new ol.source.Vector( {
-          url: './tracks/zandvoort 2016-05-17_12-58_Tue.gpx',
+          url: './tracks/zandvoort-2016-05-17_12-58_Tue.gpx',
           format: new ol.format.GPX()
         }
       )
@@ -474,35 +481,51 @@ console.log(event);
   // ==========================================================================
   loadGpxFile: function ( file ) {
 
+var timeStart = Date.now();
     var app = this;
     // https://xhr.spec.whatwg.org/
     // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest
     var gpxTextReq = new XMLHttpRequest();
-    goog.events.listen(
-      gpxTextReq,
-      goog.events.EventType.LOAD,
-      function ( e ) {
+    gpxTextReq.onload = function ( ) {
 
-console.log( "This: ", this);
 //TODO check errors https://developer.mozilla.org/en-US/docs/Web/Events/loadend
-console.log("E: ", e);
-console.log("ET: ", e.target);
-        var trackText = e.target.result;
-console.log( "TT: " + trackText);
 
-        // https://developer.mozilla.org/en-US/docs/Web/Guide/Parsing_and_serializing_XML
-        var parser = new DOMParser();
-        this.trackGpxDom = parser.parseFromString( trackText, "text/xml");
+      // https://developer.mozilla.org/en-US/docs/Web/Guide/Parsing_and_serializing_XML
+//      var parser = new DOMParser();
+//      app.trackGpxDom = parser.parseFromString( this.responseXML, "text/xml");
+      app.trackGpxDom = this.responseXML;
+console.log("Loaded after " + (Date.now() - timeStart) + " msec");
+console.log("Result: " + app.trackGpxDom);
+console.log(app.trackGpxDom.documentElement.nodeName);
+      // https://stackoverflow.com/questions/16664205/what-is-the-difference-between-getelementsbytagname-and-getelementsbyname-in-jav
+      // http://www.topografix.com/GPX/1/1/
 
-        // http://www.topografix.com/GPX/1/1/
-console.log(this.trackGpxDom);
-console.log(this.trackGpxDom.getElementByName('trkpt'));
-      },
-      false, app
-    );
+      var trkElements = app.trackGpxDom.documentElement.getElementsByTagName('trkpt');
+      var nTrk = trkElements.length;
+      for( var i = 0; i < nTrk; i++) {
+        var lat = parseFloat(trkElements[i].getAttribute("lat"));
+        var lon = parseFloat(trkElements[i].getAttribute("lon"));
+        if( lat < app.trackLat.min ) { app.trackLat.min = lat; };
+        if( lat > app.trackLat.max ) { app.trackLat.max = lat; };
+        if( lon < app.trackLon.min ) { app.trackLon.min = lon; };
+        if( lon > app.trackLon.max ) { app.trackLon.max = lon; };
+      }
+
+console.log("Calculated lon/lat after " + (Date.now() - timeStart) + " msec");
+console.log("trk area lat/lon: " + app.trackLat.min + ', ' + app.trackLat.max +
+                             '/' + app.trackLon.min + ', ' + app.trackLon.max);
+
+      app.trackMiddle.lat = (app.trackLat.min + app.trackLat.max) / 2.0;
+      app.trackMiddle.lon = (app.trackLon.min + app.trackLon.max)/2.0;
+console.log("Calculated center after " + (Date.now() - timeStart) + " msec");
+console.log("trk middel: " + app.trackMiddle.lat + ', ' + app.trackMiddle.lon);
+    }
+
+    gpxTextReq.onerror = function ( ) {
+      dump("Error while getting XML");
+    }
 
     // 3rd arg must be true to have it explicitly asynchronous.
-console.log('./tracks/' + file);
     gpxTextReq.open( "GET", './tracks/' + file, true);
     gpxTextReq.send();
 
