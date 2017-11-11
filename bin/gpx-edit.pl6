@@ -102,8 +102,6 @@ say "E: ", $gpx-dom.find( '/gpx/extensions');
   $te .= new(:text(now.DateTime.Str));
   create-element( $gpx-dom, 'time', $metadata-element).append($te);
 
-say "E: ", $gpx-dom.find('/gpx/metadata');
-
   # compress(not yet) and save
   my $bname = $gpx-file.IO.basename;
   $bname.IO.spurt(~$root);
