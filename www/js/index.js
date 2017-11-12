@@ -22,7 +22,7 @@ var SultansTrailMobileApp = {
   openMenuBttn:   '',
 
 
-  sufiTrailTrackGpx: 'zandvoort-2016-05-17_12-58_Tue.gpx',
+  sufiTrailTrackGpx: 'zandvoort 2016-05-17_12-58_Tue.gpx',
   trackGpxDom:    null,
   // The valid range of latitude in degrees is -90 and +90 for the southern and northern hemisphere respectively.
   // Longitude is in the range -180 and +180 specifying coordinates west and east of the Prime Meridian, respectively.
@@ -51,7 +51,7 @@ var SultansTrailMobileApp = {
   /*
   new ol.layer.Vector( {
       source: new ol.source.Vector( {
-          url: './tracks/zandvoort-2016-05-17_12-58_Tue.gpx',
+          url: './tracks/zandvoort 2016-05-17_12-58_Tue.gpx',
           format: new ol.format.GPX()
         }
       )
