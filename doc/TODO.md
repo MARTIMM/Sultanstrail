@@ -19,6 +19,7 @@ Other reasons for change are;
   * openlayers mentions it
 
 # Bugs and issues
+* Application hangs after some time is past. Displayed track does not influence.
 
 # Articles
 * [You Don't Need the DOM Ready Event](http://thanpol.as/javascript/you-dont-need-dom-ready)
