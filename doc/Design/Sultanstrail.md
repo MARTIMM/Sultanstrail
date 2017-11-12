@@ -5,20 +5,24 @@
 
 # Requirements for this project
 
-Because this application is primarily made for a group who are mapping a trail which the [sultans](http://www.sultanstrail.com/) of past times had walked and another wandered by [sufi's](http://sufitrail.com/), the application is mainly build around these tracks. Hopefully, other tracks can be added later on. What can be provided for each of these tracks are the following;
+Because this application is primarily made for a group who are wandering a trail which the [sultans](http://www.sultanstrail.com/) of past times had walked and another strolled by [sufi's](http://sufitrail.com/), the application is mainly build around these tracks. The track consists of several parts. There are also bicycle routes.
+
+What is provided for each of these tracks are the following;
 
 * Track information. Where and how to walk or bike the track.
-  * Complete track display.
-  * Current location using GPS.
-  * Icon-like pictures to show the environment on certain locations.
-  * Warning signals when wandering off route.
+  * Complete track display and focus on startup of application.
+  * Choose part of the track and type, bicycle or walking tracks. Also focus when selected.
+  * Show current location using GPS.
+  * Icon-like pictures to show features. These are from the map.
+  * Some features have extra information shown in a balloon when clicked. More information is shown on a separate page.
+  * Possibilities to book a room or make a reservation.
+  * Warning signals when wandering off route. E.g. a dotted line is shown from the nearest point on the track to the current location.
   * Directions on the route. E.g. turn left/right or cross a field etc.
 
-* Information of access points. These are places on the map where one can go nearby the start or end points of the route selected to walk. Long routes should also have access points along the route to be able to walk the trail in parts. The access points are points like airports, bus- and train stations. Also, when arriving by car, places to leave the car safely is useful.
-* Information of connection/crossing points with other trails.
-* Track historic information. Specific information gathered for the trail to provide insight to the historic background of the trail.
-* If a user might want to walk/bike a trail, the application will try to store all possible information on the device. When device space is an issue then it must be possible to skip less relevant data to save space.
-* Make notes and pictures and mark them on the map using small icons. This can come in handy when a route still needs to be described.
+* Information of access points. Can be turned on and off. These are places on the map where one can go nearby the start or end points of the route selected to walk. Long routes should also have access points along the route to be able to walk the trail in parts. The access points are points like airports, bus- and train stations. Also, when arriving by car, places to leave the car safely is useful.
+* ? Information of connection/crossing points with other trails.
+* ? Make notes and pictures and mark them on the map using small icons
+*
 
 It should be obvious that these trails cost a bit of money because it is a lot of work to mark the trail along the route and to travel more than once to the trail to get this work done. Furthermore there is also work to provide an historic background of the route.
 

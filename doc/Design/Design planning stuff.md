@@ -15,22 +15,22 @@ Purpose of wire frames is that it will be visible how the application will look.
 
 ### Start page
 ![start_page](https://i.imgur.com/84rx86e.png)
-  * [x] Map displayed, move around with swipe
-    * [x] Map should fill page automatically as well as the other pages
-    * [x] Show sultans trail track
-    * [ ] focus on track
-    * [ ] Re-scale map after showing track for a more or less exact fit
-    * [ ] Map, Menu and buttons must be adjusted when device is rotated
-    * [ ] Show dashed line to closest point on the trail when off trail
-    * [ ] Show features for starting scale of map
+  * [x] Map displayed, move around with swipe.
+    * [x] Map should fill page automatically as well as the other pages.
+    * [x] Show sultans trail track.
+    * [ ] Focus on track. Re-scale map after showing track for a more or less exact fit.
+    * [ ] Map, Menu and buttons must be adjusted when device is rotated.
+    * [ ] Show current location using GPS.
+    * [ ] Show dashed line from current location to closest point on the trail when off trail (further than, lets say, 1 kilometer).
+    * [ ] Show features for starting scale of map.
   * [x] Zoom buttons
-    * [x] zooming with buttons
-    * [x] zooming by pinching (on mobile device)
-    * [ ] Reveal more features when zooming in
-    * [ ] Remove features when zooming out
-  * [x] ![NorthArrow](https://i.imgur.com/YXlRYff.png) North arrow button, click action aligns map to the north
-  * [x] OSM attribution
-  * [x] ![responsive](https://i.imgur.com/AX1bM22.png) Open menu on the right side with some choices
+    * [x] zooming with buttons.
+    * [x] zooming by pinching (on mobile device).
+    * [ ] Reveal more features when zooming in.
+    * [ ] Remove features when zooming out.
+  * [x] ![NorthArrow](https://i.imgur.com/YXlRYff.png) North arrow button, click action aligns map to the north.
+  * [x] OSM attribution.
+  * [x] ![responsive](https://i.imgur.com/AX1bM22.png) Open menu on the right side with some choices.
 
 ### Pressing Menu button
 Pressing the responsive button will open a pane from the side to show a menu of options.
@@ -56,6 +56,15 @@ Pressing the responsive button will open a pane from the side to show a menu of 
   * When online
     * [ ] When confirmed, refresh maps in cache
     * [ ] Try to get weather forecast and cache this information too
+
+## Track data
+The app uses gpx data to read track information, show it and focus on it when first loaded. These gpx files must be edited (by a separate program) to add some data in the metadata section and extensions section of the gpx file.
+* [x] Program to make the calculations and store in gpx file: `gpx-edit.pl6`.
+  * [x] Calculate minimum and maximum of longitude and latitude so the app doesn't have to do it.
+  * [x] Calculate the center of the track for the same reason.
+  * [x] Remove all spaces between elements thereby making the gpx file smaller.
+* [x] Program to convert all tracks using above program: `convert-all-tracks.pl6`.
+  * [ ] Convert tracks.
 
 ## Planning
 ```mermaid
