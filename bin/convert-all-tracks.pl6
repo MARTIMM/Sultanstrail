@@ -11,6 +11,8 @@ my Array $cmd .= new(
 # do for each of the gpx files
 for dir('www/tracks').grep(/ '.gpx' $/) -> $track {
 
+  say "Processing $track";
+
   # device a name for the metadata
   my Str $name = $track.IO.basename;
   $name ~~ s/ '.gpx' $//;
@@ -21,4 +23,11 @@ for dir('www/tracks').grep(/ '.gpx' $/) -> $track {
 
   # run the program to convert the gpx file
   run( @$cmd, "-name=$name", "-keys=$keys", $track);
+
+#`{{
+  run( 'cp', $track, $track.IO.basename);
+}}
+
+  # compress result LZMA
+  run( 'xz', '-z', $track.IO.basename);
 }
