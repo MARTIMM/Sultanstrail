@@ -38,21 +38,8 @@ $html xmlns=http://www.w3.org/1999/xhtml xml:lang=en [
       ]
 
       $div [
-        $h2 [ Tracks ]
-        $ul [
-          $li id=track01 class=underline [ track to zeleni Raj ]
-          $li id=track02 class=underline [ track to Ajbat ]
-          $li id=track03 class=underline [ track 3 ]
-          $li id=track04 class=underline [ track to Gradiste ]
-          $li id=track05 class=underline [ track 5 ]
-          $li id=track06 class=underline [ track 6 ]
-          $li id=track07 class=underline [ track 7 ]
-          $li id=track08 class=underline [ track to Dragoman ]
-          $li id=track09 class=underline [ track to Slivnitsa ]
-
-          $li id=track10 class=underline [ track from Vienna to Bratislava ]
-          $li id=track11 class=underline [ track to Zandvoort ]
-        ]
+        # generate tracks from directory www/tracks
+        $!tracks.list gpx-dir=www/tracks []
       ]
 
       $div [
