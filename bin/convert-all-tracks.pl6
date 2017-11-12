@@ -13,7 +13,7 @@ for dir('www/tracks').grep(/ '.gpx' $/) -> $track {
 
   # device a name for the metadata
   my Str $name = $track.IO.basename;
-  $name ~~ s:g/ '.gpx' $//;
+  $name ~~ s/ '.gpx' $//;
   $name ~~ s:g/ <.punct> / /;
 
   # and som keys
