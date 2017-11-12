@@ -35,11 +35,9 @@ sub MAIN (
     $lon<max> = $ln if $ln > $lon<max>;
   }
 
-  note "calculated after ", now - $t0, ' sec';
-
-  note "Lon/Lat: $lat<min max>/$lon<min max>";
-
-  note "Center: ", ([+] $lat<min max>)/2.0, '/', ([+] $lon<min max>)/2.0;
+#note "calculated after ", now - $t0, ' sec';
+#note "Lon/Lat: $lat<min max>/$lon<min max>";
+#note "Center: ", ([+] $lat<min max>)/2.0, '/', ([+] $lon<min max>)/2.0;
 
   # store in gpx extensions
   my $root = $gpx-dom.find( '/gpx');
@@ -60,8 +58,6 @@ sub MAIN (
     $gpx-dom, 'center', $extensions-element,
     :attribs(%( :lat(([+] $lat<min max>)/2.0), :lon(([+] $lon<min max>)/2.0)))
   );
-
-say "E: ", $gpx-dom.find( '/gpx/extensions');
 
   my XML::Element $metadata-element =
      create-element( $gpx-dom, 'metadata', $root);
@@ -89,7 +85,7 @@ say "E: ", $gpx-dom.find( '/gpx/extensions');
   }
 
   if ?$keys {
-    $keys ~~ s/ ',' / /;
+    $keys ~~ s:g/ ',' / /;
     $te .= new(:text($keys));
     create-element( $gpx-dom, 'keywords', $metadata-element).append($te);
   }
