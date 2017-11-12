@@ -5,4 +5,5 @@ plugins/*
 www/js/goog/*
 www/js/goog-new/*
 www/js/jquery*
+www/tracks/*
 Old/*
