@@ -17,15 +17,16 @@ method list ( XML::Element $parent, Hash $attrs --> XML::Element ) {
 
   my $count = 1;
   my $gpx-dir = $attrs<gpx-dir>.Str // '.';
+  my $prefix-path = $attrs<prefix-path>.Str // '.';
   for dir($gpx-dir).grep(/ '.gpx' $/).sort -> $gpx-file {
     my Str $text = $gpx-file.IO.basename;
     $text ~~ s/ '.gpx' $//;
     $text ~~ s:g/ <punct> / /;
     append-element(
       $ul, 'li', %(
-        :id('track' ~ $count++.fmt('%02d')),
-        :class<underline>,
-        :data-gpx-file($gpx-file),
+        :id('track' ~ $count++),
+        :class("hreftype"),
+        :data-gpx-file($prefix-path ~ $gpx-file.IO.basename),
       ),
       :$text
     );

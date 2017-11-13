@@ -39,7 +39,7 @@ $html xmlns=http://www.w3.org/1999/xhtml xml:lang=en [
 
       $div [
         # generate tracks from directory www/tracks
-        $!tracks.list gpx-dir=www/tracks []
+        $!tracks.list gpx-dir=www/tracks prefix-path=./tracks/
       ]
 
       $div [
@@ -114,7 +114,7 @@ $html xmlns=http://www.w3.org/1999/xhtml xml:lang=en [
               $th [ Current App Version ]
             ]
             $tr [
-              $td [ 0.3.0 ]
+              $td [ 0.4.0 ]
             ]
           ]
         #]
@@ -131,12 +131,10 @@ $html xmlns=http://www.w3.org/1999/xhtml xml:lang=en [
 #    $script src=cordova.js
 
 #    $script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"
-#    $script src="js/polyfill.min.js"
-    $script src=js/ol.js
+#    $script src=js/polyfill.min.js
     $script src=js/goog/base.js
     $script [!=
       goog.require('goog.dom');
-      //goog.require('goog.ui');
       goog.require('goog.ui.TabPane');
       goog.require('goog.events');
       goog.require('goog.events.EventType');
@@ -146,6 +144,8 @@ $html xmlns=http://www.w3.org/1999/xhtml xml:lang=en [
       goog.require('goog.fx');
       goog.require('goog.fx.dom');
     !]
+    $script src=js/ol.js
+    #$script src=js/lzma-min.js
     $script src=js/index.js
 
   ] # body
