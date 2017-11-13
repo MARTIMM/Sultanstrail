@@ -18,7 +18,7 @@ Purpose of wire frames is that it will be visible how the application will look.
   * [x] Map displayed, move around with swipe.
     * [x] Map should fill page automatically as well as the other pages.
     * [x] Show sultans trail track.
-    * [ ] Focus on track. Re-scale map after showing track for a more or less exact fit.
+    * [x] Focus on track. Re-scale map after showing track for a more or less exact fit.
     * [ ] Map, Menu and buttons must be adjusted when device is rotated.
     * [ ] Show current location using GPS.
     * [ ] Show dashed line from current location to closest point on the trail when off trail (further than, lets say, 1 kilometer).
@@ -39,6 +39,7 @@ Pressing the responsive button will open a pane from the side to show a menu of 
 
   * [x] **Map**: show map and remove menu when clicked
   * [ ] **Info**: show route info
+  * [ ] **Tracks**: Select a track. Show map again when a selection is made. The route is centered and fitted.
   * [ ] **Feature** show all of the history, or other info. Is filled when feature is clicked. First a balloon is showed on the map pointing to the feature with text and a 'more ...' on the bottom.
   * [ ] **Start**: record your track data
   * [ ] **About**: show a page with version, people and contacts
@@ -62,9 +63,29 @@ The app uses gpx data to read track information, show it and focus on it when fi
 * [x] Program to make the calculations and store in gpx file: `gpx-edit.pl6`.
   * [x] Calculate minimum and maximum of longitude and latitude so the app doesn't have to do it.
   * [x] Calculate the center of the track for the same reason.
-  * [x] Remove all spaces between elements thereby making the gpx file smaller.
+  * [x] metadata
+    * [x] name; filename without '.gpx' and punctuation replaced by spaces.
+    * [x] desc; "hiking routes from Vienna to Istanbul".
+    * [x] author; "Sultanstrail".
+    * [x] copyright; "Sultanstrail".
+    * [x] link; "http://www.sultanstrail.com/".
+    * [x] time; date and time of conversion.
+    * [x] keywords; "hike", "Vienna", "Istanbul" and some others taken from the filename.
+    * [ ] bounds; not used
+    * [ ] extensions; not used
+
+* [x] Remove all spaces between elements thereby making the gpx file smaller.
 * [x] Program to convert all tracks using above program: `convert-all-tracks.pl6`.
-  * [ ] Convert tracks.
+  * [x] Convert tracks one by one.
+  * [ ] Compress the track to a smaller format to make the payload smaller.
+* [ ] Start showing the sultanstrail icon and only show content when everything is ready in the background. This provides a better user experience.
+* [ ] In the process of making the javascript library payload smaller it is possible to change several calls to the google library into plain available calls
+  * [ ] goog.events by using on\<`some-event`>(), addEventListener() and dispatchEvent().
+  * [ ] goog.dom by using querySelect() and querySelectAll()
+  * [ ] goog.ui
+
+## Bugs
+* [ ] Hangup after a while when swiping etc. over the map
 
 ## Planning
 ```mermaid
