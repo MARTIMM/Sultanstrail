@@ -29,5 +29,5 @@ for dir('www/tracks').grep(/ '.gpx' $/) -> $track {
 }}
 
   # compress result LZMA
-  run( 'xz', '-z', $track.IO.basename);
+  #run( 'xz', '-z', '-k', $track.IO.basename);
 }
