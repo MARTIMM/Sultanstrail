@@ -1,5 +1,8 @@
 
-
+* 0.4.0
+  * Menu of tracks from Rob
+  * Show route, scale and fit on map
+  * gpx files are extended with metadata and extensions data
 * 0.3.0
   * Map and other pages fills whole page
   * Menu is hidden
