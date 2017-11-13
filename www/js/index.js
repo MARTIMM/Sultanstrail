@@ -22,29 +22,8 @@ var SultansTrailMobileApp = {
   openMenuBttn:   '',
 
 
-  sufiTrailTrackGpx: 'zandvoort 2016-05-17_12-58_Tue.gpx',
+  //sufiTrailTrackGpx: './tracks/zandvoort 2016-05-17_12-58_Tue.gpx',
   trackGpxDom:    null,
-  // The valid range of latitude in degrees is -90 and +90 for the southern and northern hemisphere respectively.
-  // Longitude is in the range -180 and +180 specifying coordinates west and east of the Prime Meridian, respectively.
-  trackLat:       { min: 200, max: -200},   // use semi infinites
-  trackLon:       { min: 100, max: -100},
-  trackMiddle:    { lat: 0, lon: 0},
-
-  // Sultanstrail track bundle with parallel routes
-  trackFiles:     {
-    track01: 'Track 001 Naar zeleni Raj.gpx',
-    track02: 'Track 002 ajbat.gpx',
-    track03: 'Track 003.gpx',
-    track04: 'Track 004 naar Gradiste.gpx',
-    track05: 'Track 005.gpx',
-    track06: 'Track 006.gpx',
-    track07: 'Track 007.gpx',
-    track08: 'Track 008 to Dragoman.gpx',
-    track09: 'Track 009 to Slivnitsa.gpx',
-
-    track10: '1.1 vienna-bratislava.gpx',
-    track11:  'zandvoor 2016-05-17_12-58_Tue.gpx'
-  },
 
   // ==========================================================================
   vector: null,
@@ -122,18 +101,6 @@ var SultansTrailMobileApp = {
     }
   },
 
-/*
-  // ==========================================================================
-  loadTrack: function ( gpx-file ) {
-    var app = e.data['app'];
-    goog.dom.setTextContent(
-      goog.dom.getElement('message'),
-      'load ' + trackKey + ': ' + app.trackFiles[trackKey]
-    );
-    app.readTrack();
-  },
-*/
-
   // ==========================================================================
   openMenu: function ( e ) {
     console.log('open menu: ' + e );
@@ -151,7 +118,7 @@ var SultansTrailMobileApp = {
 
   // ==========================================================================
   closeMenu: function ( e ) {
-    console.log('open menu: ' + e );
+
     var menu = document.querySelector('div#tabpane ul.goog-tabpane-tabs');
     console.log(menu);
 
@@ -224,7 +191,7 @@ var SultansTrailMobileApp = {
     //-------------------------------------------------------------------------
     // listen to click on map tab
     var maptab = document.querySelector('div#tabpane ul li');
-    console.log(maptab);
+console.log(maptab);
     goog.events.listen(
       maptab, goog.events.EventType.CLICK,
       SultansTrailMobileApp.closeMenu, false, SultansTrailMobileApp
@@ -244,21 +211,44 @@ var SultansTrailMobileApp = {
     panel.addControls([barsbttn]);
 */
 
-/*
     // ------------------------------------------------------------------------
     // Make series of tracks clickable
-    Object.keys(this.trackFiles).forEach(
-      function ( trackKey ) {
-//console.log("TK: " + trackKey);
-//console.log("GE: " + goog.dom.getElement(trackKey));
-return;
-        goog.events.listen(
-          goog.dom.getElement(trackKey), goog.events.EventType.CLICK,
-          this.loadTrack, false, this
-        );
-      }
-    );
-*/
+    //var app = this;
+    var gpxElement;
+    var trackCount = 1;
+    while ( gpxElement = document.querySelector('#track' + trackCount) ) {
+      // get the filename from the data attribute
+      var gpxFile = gpxElement.getAttribute('data-gpx-file');
+console.log('set handler for track' + trackCount + ' ' + gpxFile);
+      trackCount++;
+
+      // set a click handler on the li element to close the menu and
+      // to show the map again.
+      goog.events.listen(
+        gpxElement, goog.events.EventType.CLICK,
+        function () {
+          // create a mouse event to simulate a click on the first entry of the menu
+          var evt = new MouseEvent(
+            "click", {
+              bubbles: true,
+              cancelable: false,
+              view: window
+            }
+          );
+
+          // TODO there is only an event on the first entry, how does this work
+          // to switch from one page to an other page?
+          document.querySelector('div#tabpane ul li').dispatchEvent(evt);
+
+          // close menu
+          this.closeMenu();
+
+console.log('load track from ' + gpxFile);
+          // center and fit on new track
+          this.loadTrack(gpxFile);
+        }, false, this
+      );
+    }
 
     // ------------------------------------------------------------------------
     // show map
@@ -289,76 +279,32 @@ return;
 
     // ------------------------------------------------------------------------
     // click on features
-    var t = this;
-    this.map.on(
+    var app = this;
+    app.map.on(
       'click',
       function ( e ) {
 //        console.log('event: ' + e + ', target: ', + e.target + ', map: ' + e.map);
 //        var eLoc = t.map.getEventCoordinate(e);
 //        console.log("e loc: " + eLoc);
-        this.map.forEachFeatureAtPixel(
+        app.map.forEachFeatureAtPixel(
           e.pixel,
           function( feature, layer) {
             console.log("Feature: " + feature.get('name') + ', id: ' + feature.getId());
+/*
             goog.dom.setTextContent(
               goog.dom.getElement("message"),
               feature.get('dataLocation')
             );
-//            t.mapView.setCenter(eLoc);
+*/
+//            app.mapView.setCenter(eLoc);
           }
         );
       },
-      this
+      app
     );
 
-    this.loadTrack(this.sufiTrailTrackGpx);
-
-/*
-    // ------------------------------------------------------------------------
-    // get the geo locater
-    this.geolocation = new ol.Geolocation( {
-      // Get the current map projection
-      projection: this.mapView.getProjection(),
-      // Track the user position
-      tracking: true
-    } );
-
-    // and listen to the change events
-//    this.geolocation.on( "change", this.locationListener, this);
-
-    goog.events.listen(
-      this.geolocation, goog.events.EventType.CHANGE,   // is same as 'change'
-      this.locationListener, false, this
-    );
-
-    console.log("application started");
-*/
+    //app.loadTrack(app.sufiTrailTrackGpx);
   },
-
-/*
-  // ==========================================================================
-  locationListener: function (event) {
-
-console.log(event);
-
-    this.mapView.setCenter(this.geolocation.getPosition());
-    this.mapView.setZoom(18);
-
-    goog.dom.setTextContent(
-      goog.dom.getElement("message"),
-      'Map changed: ' + this.geolocation.getPosition()
-    );
-    this.count++;
-
-    // being a test turn it off after a few times
-    if( this.count > 0 ) {
-//      this.geolocation.un( "change", this.locationListener, this);
-      goog.events.unlisten( this.geolocation, goog.events.EventType.CHANGE,
-        this.locationListener, false, this
-      );
-    }
-  },
-*/
 
   // ==========================================================================
   setView: function( ) {
@@ -386,10 +332,6 @@ console.log(event);
     );
     this.mapLayers.push(new ol.layer.Tile( { source: s2 } ));
   },
-
-//  layerEvent: function(e) {
-//    console.log(e.type);
-//  },
 
   // ==========================================================================
   // See also https://openlayers.org/en/latest/examples/icon-color.html
@@ -460,11 +402,12 @@ console.log(event);
   // ==========================================================================
   loadTrack: function ( file ) {
 
+console.log('Load: ' + file);
     var app = this;
-    this.map.removeLayer(this.vector);
-    this.vector = new ol.layer.Vector( {
+    app.map.removeLayer(app.vector);
+    app.vector = new ol.layer.Vector( {
         source: new ol.source.Vector( {
-            url: './tracks/' + file,
+            url: file,
             format: new ol.format.GPX()
           }
         ),
@@ -475,59 +418,83 @@ console.log(event);
     );
 
     this.map.addLayer(this.vector);
-    this.loadGpxFile(file);
+    app.loadGpxFile(file);
   },
 
   // ==========================================================================
   loadGpxFile: function ( file ) {
 
-var timeStart = Date.now();
     var app = this;
-    // https://xhr.spec.whatwg.org/
-    // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest
-    var gpxTextReq = new XMLHttpRequest();
-    gpxTextReq.onload = function ( ) {
+app.timeStart = Date.now();
 
-//TODO check errors https://developer.mozilla.org/en-US/docs/Web/Events/loadend
+    if ( new RegExp(/\.xz$/).test(file) ) {
+/*
+      var buffer = new ArrayBuffer;
+console.log('set lzma file: ' + file);
+      var lzma = new LZMA(file);
+console.log('start decompress');
+      lzma.decompress(
+        buffer,
+        // on finish
+        function ( result, error ) {
+          console.log('Result: ' + result);
+          console.log('Error: ' + error);
+        },
+        // on progress
+        function ( percent ) {
+          console.log('Decompressed: ' + percent + '%');
+        }
+      );
+*/
+    }
 
-      // https://developer.mozilla.org/en-US/docs/Web/Guide/Parsing_and_serializing_XML
-//      var parser = new DOMParser();
-//      app.trackGpxDom = parser.parseFromString( this.responseXML, "text/xml");
-      app.trackGpxDom = this.responseXML;
-console.log("Loaded after " + (Date.now() - timeStart) + " msec");
+    else {
+      // https://xhr.spec.whatwg.org/
+      // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest
+      var gpxTextReq = new XMLHttpRequest();
+      gpxTextReq.onreadystatechange = function ( ) {
+console.log(
+  'State: ' + this.readyState
+            + ', ' + this.status
+            + ', ' + this.statusText
+);
+
+        if ( this.readyState === 4 ) {
+  //TODO check errors https://developer.mozilla.org/en-US/docs/Web/Events/loadend
+
+        // https://developer.mozilla.org/en-US/docs/Web/Guide/Parsing_and_serializing_XML
+  //      var parser = new DOMParser();
+  //      app.trackGpxDom = parser.parseFromString( this.responseXML, "text/xml");
+          app.trackGpxDom = this.responseXML;
+console.log("RT: " + this.responseText);
+console.log("Loaded after " + (Date.now() - app.timeStart) + " msec");
 console.log("Result: " + app.trackGpxDom);
 console.log(app.trackGpxDom.documentElement.nodeName);
-      // https://stackoverflow.com/questions/16664205/what-is-the-difference-between-getelementsbytagname-and-getelementsbyname-in-jav
-      // http://www.topografix.com/GPX/1/1/
+          // https://stackoverflow.com/questions/16664205/what-is-the-difference-between-getelementsbytagname-and-getelementsbyname-in-jav
+          // http://www.topografix.com/GPX/1/1/
 
-      var trkElements = app.trackGpxDom.documentElement.getElementsByTagName('trkpt');
-      var nTrk = trkElements.length;
-      for( var i = 0; i < nTrk; i++) {
-        var lat = parseFloat(trkElements[i].getAttribute("lat"));
-        var lon = parseFloat(trkElements[i].getAttribute("lon"));
-        if( lat < app.trackLat.min ) { app.trackLat.min = lat; };
-        if( lat > app.trackLat.max ) { app.trackLat.max = lat; };
-        if( lon < app.trackLon.min ) { app.trackLon.min = lon; };
-        if( lon > app.trackLon.max ) { app.trackLon.max = lon; };
+          app.scaleAndFocus(app);
+        }
       }
+/*
+      gpxTextReq.addEventListener(
+        "error",
+        function ( e ) {
+          console.log("request.error called. Error: " + gpxTextReq.statusText);
+        }
+      );
+*//*
+      gpxTextReq.onerror = function ( e ) {
+        console.log("request.error called. Error: " + e);
+      }
+*/
 
-console.log("Calculated lon/lat after " + (Date.now() - timeStart) + " msec");
-console.log("trk area lat/lon: " + app.trackLat.min + ', ' + app.trackLat.max +
-                             '/' + app.trackLon.min + ', ' + app.trackLon.max);
-
-      app.trackMiddle.lat = (app.trackLat.min + app.trackLat.max) / 2.0;
-      app.trackMiddle.lon = (app.trackLon.min + app.trackLon.max)/2.0;
-console.log("Calculated center after " + (Date.now() - timeStart) + " msec");
-console.log("trk middel: " + app.trackMiddle.lat + ', ' + app.trackMiddle.lon);
+      // 3rd arg must be true to have it explicitly asynchronous.
+console.log('open... ' + file);
+      gpxTextReq.open( "GET", file, true);
+console.log('send... ' + file);
+      gpxTextReq.send();
     }
-
-    gpxTextReq.onerror = function ( ) {
-      dump("Error while getting XML");
-    }
-
-    // 3rd arg must be true to have it explicitly asynchronous.
-    gpxTextReq.open( "GET", './tracks/' + file, true);
-    gpxTextReq.send();
 
 /*
     var reader = new FileReader();
@@ -547,6 +514,39 @@ console.log("trk middel: " + app.trackMiddle.lat + ', ' + app.trackMiddle.lon);
       )
     );
 */
+  },
+
+  // ==========================================================================
+  scaleAndFocus: function ( app ) {
+
+    // Find the extensions in the gpx root
+    var gpxExtensions = app.trackGpxDom.documentElement.querySelector('gpx extensions');
+
+    // get the minima and maxima
+    var bottomLeft = app.transform( [
+        parseFloat(gpxExtensions.querySelector('lon').getAttribute('min')),
+        parseFloat(gpxExtensions.querySelector('lat').getAttribute('min')),
+      ]
+    );
+    var topRight = app.transform( [
+        parseFloat(gpxExtensions.querySelector('lon').getAttribute('max')),
+        parseFloat(gpxExtensions.querySelector('lat').getAttribute('max'))
+      ]
+    );
+
+/*
+    var center = app.transform( [
+        parseFloat(gpxExtensions.querySelector('center').getAttribute('lon')),
+        parseFloat(gpxExtensions.querySelector('center').getAttribute('lat'))
+      ]
+    );
+*/
+
+    // Fit the track on screen with the found minima and maxima
+    app.mapView.fit(
+      [ bottomLeft[0], bottomLeft[1], topRight[0], topRight[1]],
+      app.map.getSize()
+    );
   },
 
   // ==========================================================================
