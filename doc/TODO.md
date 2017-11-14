@@ -20,6 +20,7 @@ Other reasons for change are;
 
 # Bugs and issues
 * Application hangs after some time is past. Displayed track does not influence.
+* Gpx file are missing a proper xml prefix after conversion
 
 # Articles
 * [You Don't Need the DOM Ready Event](http://thanpol.as/javascript/you-dont-need-dom-ready)

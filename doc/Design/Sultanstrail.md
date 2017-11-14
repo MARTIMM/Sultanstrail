@@ -184,3 +184,6 @@ The following items must be available
 
 <!-- References to sites and docs -------------------------->
 [cdv-icons]: https://cordova.apache.org/docs/en/latest/config_ref/images.html
+[on-event]: https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Event_handlers
+[event-listen]: https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
+[event-type]: https://developer.mozilla.org/en-US/docs/Web/Events
