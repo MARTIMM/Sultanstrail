@@ -87,7 +87,7 @@ $html xmlns=http://www.w3.org/1999/xhtml xml:lang=en [
             ]
             $tr [
               $td [ Pijke Wees ]
-              $td [ Cartography ]
+              $td [ Cartographer ]
             ]
 
             $tr [
@@ -114,7 +114,7 @@ $html xmlns=http://www.w3.org/1999/xhtml xml:lang=en [
               $th [ Current App Version ]
             ]
             $tr [
-              $td [ 0.4.0 ]
+              $td [ 0.4.1 ]
             ]
           ]
         #]
@@ -136,9 +136,6 @@ $html xmlns=http://www.w3.org/1999/xhtml xml:lang=en [
     $script [!=
       goog.require('goog.dom');
       goog.require('goog.ui.TabPane');
-      goog.require('goog.events');
-      goog.require('goog.events.EventType');
-      goog.require('goog.math.Size');
       goog.require('goog.style');
       goog.require('goog.dom.ViewportSizeMonitor');
       goog.require('goog.fx');

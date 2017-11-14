@@ -135,20 +135,19 @@ var SultansTrailMobileApp = {
   openMenuControl: function ( opts ) {
 
     // 'this' is the Control object! -> use SultansTrailMobileApp
+    var app = SultansTrailMobileApp;
 
     // build a control to show on map
     var options = opts || {};
     var openMenuBttn = goog.dom.createElement('button');
     openMenuBttn.innerHTML = '<img src="images/responsive.png" />';
-    goog.events.listen(
-      openMenuBttn, goog.events.EventType.CLICK,
-      SultansTrailMobileApp.openMenu, false, SultansTrailMobileApp
-    );
+    openMenuBttn.addEventListener( "click", app.openMenu);
 
     var buttonContainer = goog.dom.createElement('div');
     buttonContainer.className = 'open-menu ol-unselectable ol-control';
     buttonContainer.appendChild(openMenuBttn);
 
+    // control object needs this
     ol.control.Control.call(
       this, {
         element: buttonContainer,
@@ -179,10 +178,8 @@ var SultansTrailMobileApp = {
 
     // ------------------------------------------------------------------------
     // Activate exit button
-//    goog.events.listen(
-//      goog.dom.getElement('exit-bttn'), goog.events.EventType.CLICK,
-//      this.exitButton, false, this
-//    );
+    //var exitBttn = goog.dom.getElement('exit-bttn');
+    //exitBttn.addEventListener( "click",  this.exitButton);
 
     //-------------------------------------------------------------------------
     // inherit menu control
@@ -192,10 +189,7 @@ var SultansTrailMobileApp = {
     // listen to click on map tab
     var maptab = document.querySelector('div#tabpane ul li');
 console.log(maptab);
-    goog.events.listen(
-      maptab, goog.events.EventType.CLICK,
-      SultansTrailMobileApp.closeMenu, false, SultansTrailMobileApp
-    );
+    maptab.addEventListener( "click", SultansTrailMobileApp.closeMenu,);
 
     // ------------------------------------------------------------------------
     // initialize layers, features and view
@@ -203,17 +197,9 @@ console.log(maptab);
     this.addMapFeatures();
     this.setView();
 
-/*
-    // ------------------------------------------------------------------------
-    // Make a button panel on OpenLayer map
-    var barsbttn = goog.dom.getElement('bars-bttn');
-    var panel = new ol.Control.Panel({defaultControl: barsbttn});
-    panel.addControls([barsbttn]);
-*/
-
     // ------------------------------------------------------------------------
     // Make series of tracks clickable
-    //var app = this;
+    var app = this;
     var gpxElement;
     var trackCount = 1;
     while ( gpxElement = document.querySelector('#track' + trackCount) ) {
@@ -224,8 +210,8 @@ console.log('set handler for track' + trackCount + ' ' + gpxFile);
 
       // set a click handler on the li element to close the menu and
       // to show the map again.
-      goog.events.listen(
-        gpxElement, goog.events.EventType.CLICK,
+      gpxElement.addEventListener(
+        "click",
         function () {
           // create a mouse event to simulate a click on the first entry of the menu
           var evt = new MouseEvent(
@@ -241,12 +227,12 @@ console.log('set handler for track' + trackCount + ' ' + gpxFile);
           document.querySelector('div#tabpane ul li').dispatchEvent(evt);
 
           // close menu
-          this.closeMenu();
+          app.closeMenu();
 
 console.log('load track from ' + gpxFile);
           // center and fit on new track
-          this.loadTrack(gpxFile);
-        }, false, this
+          app.loadTrack(gpxFile);
+        }
       );
     }
 
@@ -459,21 +445,25 @@ console.log(
             + ', ' + this.statusText
 );
 
-        if ( this.readyState === 4 ) {
-  //TODO check errors https://developer.mozilla.org/en-US/docs/Web/Events/loadend
-
         // https://developer.mozilla.org/en-US/docs/Web/Guide/Parsing_and_serializing_XML
+        if ( this.readyState === 4 ) {
+          if ( this.status === 200 ) {
   //      var parser = new DOMParser();
   //      app.trackGpxDom = parser.parseFromString( this.responseXML, "text/xml");
-          app.trackGpxDom = this.responseXML;
-console.log("RT: " + this.responseText);
+            app.trackGpxDom = this.responseXML;
+//console.log("RT: " + this.responseText);
 console.log("Loaded after " + (Date.now() - app.timeStart) + " msec");
-console.log("Result: " + app.trackGpxDom);
-console.log(app.trackGpxDom.documentElement.nodeName);
+//console.log("Result: " + app.trackGpxDom);
+//console.log(app.trackGpxDom.documentElement.nodeName);
           // https://stackoverflow.com/questions/16664205/what-is-the-difference-between-getelementsbytagname-and-getelementsbyname-in-jav
           // http://www.topografix.com/GPX/1/1/
 
-          app.scaleAndFocus(app);
+            app.scaleAndFocus(app);
+          }
+
+          else {
+            console.log("Not Found; Path to file or filename probably spelled wrong");
+          }
         }
       }
 /*
@@ -490,30 +480,11 @@ console.log(app.trackGpxDom.documentElement.nodeName);
 */
 
       // 3rd arg must be true to have it explicitly asynchronous.
-console.log('open... ' + file);
+//console.log('open... ' + file);
       gpxTextReq.open( "GET", file, true);
-console.log('send... ' + file);
+//console.log('send... ' + file);
       gpxTextReq.send();
     }
-
-/*
-    var reader = new FileReader();
-    goog.events.listen(
-      reader, goog.events.EventType.LOAD,
-      app.cnvText2Gpx, false, app
-    );
-
-    // start reading, function above is triggered when ready
-    var file = new File();
-    file.name('./tracks/' + file);
-
-    reader.readAsText(
-      new File(
-        ['./tracks/' + file],
-        {type: "text/plain;charset=utf-8"}
-      )
-    );
-*/
   },
 
   // ==========================================================================

@@ -79,13 +79,27 @@ The app uses gpx data to read track information, show it and focus on it when fi
   * [x] Convert tracks one by one.
   * [ ] Compress the track to a smaller format to make the payload smaller.
 * [ ] Start showing the sultanstrail icon and only show content when everything is ready in the background. This provides a better user experience.
+
+## Javascript
 * [ ] In the process of making the javascript library payload smaller it is possible to change several calls to the google library into plain available calls
-  * [ ] goog.events by using on\<`some-event`>(), addEventListener() and dispatchEvent().
+  * [x] goog.events by using on\<`some-event`>(), addEventListener() and dispatchEvent().
   * [ ] goog.dom by using querySelect() and querySelectAll()
   * [ ] goog.ui
 
+## Events to listen to
+There are several events which can happen upon changing conditions in a device. These must be captured for further actions. No events are described wgich are caused by pressing a button or something like that.
+* [ ] Battery conditions.
+* [ ] Gps information.
+* [ ] Network on and off line mode.
+* [ ] Device orientation.
+* [ ] Compas.
+* [ ] Camera.
+* [ ] Time and clock.
+
+
 ## Bugs
 * [ ] Hangup after a while when swiping etc. over the map
+* [ ] Gpx file are missing a proper xml prefix after conversion
 
 ## Planning
 ```mermaid
@@ -95,7 +109,7 @@ gantt
 
   section Design
   write requirements and design doc :active, req, 2017-10-10, 10w
-  draw wireframes                   :active, wire, 2017-10-11, 5w
+  draw wireframes                   :active, wire, 2017-10-11, 6w
   write manual                      : man, after wire, 2w
 
   section Implementation
@@ -123,5 +137,5 @@ gantt
 | Rob Polko | rob@sultanstrail.nl | Map design
 | Tine Lambers | | Office Manager
 | Merel van Essen | | Writer of handbook
-| Pijke Wees | pijkev@hotmail.com | Cartograaf
+| Pijke Wees | pijkev@hotmail.com | Cartographer
 | Marcel Timmerman | mt1957@gmail.com | Application builder

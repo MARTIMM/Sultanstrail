@@ -1,4 +1,6 @@
 
+* 0.4.1
+  * Removed goog.events.* and goog.math because event handling is done differently and math is not needed anymore (yet).
 * 0.4.0
   * Menu of tracks from Rob
   * Show route, scale and fit on map
