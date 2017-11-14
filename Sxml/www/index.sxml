@@ -10,6 +10,7 @@ $html xmlns=http://www.w3.org/1999/xhtml xml:lang=en [
 
   $head [
     $meta charset=UTF-8
+    $meta name=viewport content="width=device-width, height=device-height, initial-scale=1"
 
     # only css load here, scripts are at the end
     $link rel=stylesheet type=text/css href=css/ol.css
@@ -25,11 +26,6 @@ $html xmlns=http://www.w3.org/1999/xhtml xml:lang=en [
       $div id=mapContainer [
         $h2 [ Map ]
         $div id=mymap class=map
-
-        #$p class=tight-fit [
-        #  $div id=mymap class=map
-        #  $strong id=message
-        #]
       ]
 
       $div [
