@@ -187,3 +187,4 @@ The following items must be available
 [on-event]: https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Event_handlers
 [event-listen]: https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
 [event-type]: https://developer.mozilla.org/en-US/docs/Web/Events
+[style]: https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style

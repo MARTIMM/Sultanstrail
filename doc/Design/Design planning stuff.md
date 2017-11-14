@@ -82,20 +82,36 @@ The app uses gpx data to read track information, show it and focus on it when fi
 
 ## Javascript
 * [ ] In the process of making the javascript library payload smaller it is possible to change several calls to the google library into plain available calls
-  * [x] goog.events by using on\<`some-event`>(), addEventListener() and dispatchEvent().
-  * [ ] goog.dom by using querySelect() and querySelectAll()
-  * [ ] goog.ui
+  * [x] Replace `goog.events.Listener` by standard `addEventListener` and `dispatchEvent` with `MouseEvent`.
+  * [ ] goog.dom by standard querySelect() and querySelectAll()
+  * [ ] goog.ui.TabPane
+  * [x] Replace `goog.style` with standard `style` on DOM elements
+  * [ ] goog.fx
+  * [ ] goog.fx.dom
+  * [x] Replace `goog.dom.ViewportSizeMonitor` by standard `window.innerWidth` and `window.innerHeight`.
 
 ## Events to listen to
 There are several events which can happen upon changing conditions in a device. These must be captured for further actions. No events are described wgich are caused by pressing a button or something like that.
-* [ ] Battery conditions.
+* [ ] Battery conditions:
+  * Warn user of battery low state. Can dim display or other options to save energy.
 * [ ] Gps information.
-* [ ] Network on and off line mode.
+  * Show current location
+  * Record track of user
+* [ ] Network on and off line mode. When on then
+  * It is possible to update maps
+  * Send out walked tracks
 * [ ] Device orientation.
-* [ ] Compas.
+  * To show map correctly pointing the map-north to the real north.
 * [ ] Camera.
+  * To add the picture as a point on the map when saved.
 * [ ] Time and clock.
+  * Show date and time.
 
+## Operating system dependencies
+* [ ] Android: App, version?
+* [ ] IOS: App, version?
+* [ ] Windows: App, version?
+* [ ] Linux: App and browsers Firefox, Opera?, Chrome?
 
 ## Bugs
 * [ ] Hangup after a while when swiping etc. over the map
