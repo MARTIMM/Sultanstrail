@@ -83,7 +83,7 @@ The app uses gpx data to read track information, show it and focus on it when fi
 ## Javascript
 * [ ] In the process of making the javascript library payload smaller it is possible to change several calls to the google library into plain available calls
   * [x] Replace `goog.events.Listener` by standard `addEventListener` and `dispatchEvent` with `MouseEvent`.
-  * [ ] goog.dom by standard querySelect() and querySelectAll()
+  * [x] `goog.dom` by standard `querySelect()`, `querySelectAll()` and `document.createElement`
   * [ ] goog.ui.TabPane
   * [x] Replace `goog.style` with standard `style` on DOM elements
   * [ ] goog.fx

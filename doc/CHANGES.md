@@ -3,6 +3,7 @@
   * Removed `goog.events.*` and `goog.math` because event handling is done differently and math is not needed anymore (yet).
   * Removed `goog.style.*` and replaced by standard `style` on an `Element`
   * Removed `goog.dom.ViewportSizeMonitor` and replaced by standard use of `window.innerWidth` and `window.innerHeight`.
+  * Remove `goog.dom` for `document.querySelector` and `document.createElement`
 * 0.4.0
   * Menu of tracks from Rob
   * Show route, scale and fit on map
