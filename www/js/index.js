@@ -93,10 +93,12 @@ var SultansTrailMobileApp = {
       }
 
       else {
+/*
         goog.dom.setTextContent(
           goog.dom.getElement('message'),
           'No mobile device'
         );
+*/
       }
     }
   },
@@ -139,11 +141,11 @@ var SultansTrailMobileApp = {
 
     // build a control to show on map
     var options = opts || {};
-    var openMenuBttn = goog.dom.createElement('button');
+    var openMenuBttn = document.createElement('button');
     openMenuBttn.innerHTML = '<img src="images/responsive.png" />';
     openMenuBttn.addEventListener( "click", app.openMenu);
 
-    var buttonContainer = goog.dom.createElement('div');
+    var buttonContainer = document.createElement('div');
     buttonContainer.className = 'open-menu ol-unselectable ol-control';
     buttonContainer.appendChild(openMenuBttn);
 
@@ -162,7 +164,7 @@ var SultansTrailMobileApp = {
     // ------------------------------------------------------------------------
     // make a tabpane
     var tabPane = new goog.ui.TabPane(
-      goog.dom.getElement('tabpane'),
+      document.querySelector('div#tabpane'),
       goog.ui.TabPane.TabLocation.RIGHT
     );
 
@@ -172,7 +174,7 @@ var SultansTrailMobileApp = {
     console.log('width=' + window.innerWidth + ', height=' + window.innerHeight);
     document.getElementById('tabpane').style.cssText =
       "width: " + window.innerWidth + 'px;' +
-      "height: " + window.innerHeight + 'px;' ;
+      "height: " + window.innerHeight + 'px;';
 
     // ------------------------------------------------------------------------
     // Activate exit button

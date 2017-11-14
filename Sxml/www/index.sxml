@@ -130,7 +130,6 @@ $html xmlns=http://www.w3.org/1999/xhtml xml:lang=en [
 #    $script src=js/polyfill.min.js
     $script src=js/goog/base.js
     $script [!=
-      goog.require('goog.dom');
       goog.require('goog.ui.TabPane');
       goog.require('goog.fx');
       goog.require('goog.fx.dom');
