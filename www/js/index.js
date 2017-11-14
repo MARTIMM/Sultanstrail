@@ -168,13 +168,11 @@ var SultansTrailMobileApp = {
 
     // ------------------------------------------------------------------------
     // get size of viewport and modify the tabpane to fit
-    this.viewportSize = goog.dom.getViewportSize();
-    console.log(this.viewportSize);
-    goog.style.setSize(
-      goog.dom.getElement('tabpane'),
-      this.viewportSize.width,
-      this.viewportSize.height
-    );
+    //TODO make it dynamic
+    console.log('width=' + window.innerWidth + ', height=' + window.innerHeight);
+    document.getElementById('tabpane').style.cssText =
+      "width: " + window.innerWidth + 'px;' +
+      "height: " + window.innerHeight + 'px;' ;
 
     // ------------------------------------------------------------------------
     // Activate exit button
