@@ -198,7 +198,7 @@ console.log(maptab);
     this.setView();
 
     // ------------------------------------------------------------------------
-    // Make series of tracks clickable
+    // make series of tracks clickable
     var app = this;
     var gpxElement;
     var trackCount = 1;
@@ -208,12 +208,13 @@ console.log(maptab);
 console.log('set handler for track' + trackCount + ' ' + gpxFile);
       trackCount++;
 
-      // set a click handler on the li element to close the menu and
-      // to show the map again.
-      gpxElement.addEventListener(
-        "click",
-        function () {
-          // create a mouse event to simulate a click on the first entry of the menu
+      // Function returning a handler which show a track and focus as well as
+      // fits the track on screen
+      function loadTrack ( trackFile ) {
+        return function ( ) {
+
+          // create a mouse event to simulate a click on the first entry
+          // of the menu. This shows the map again
           var evt = new MouseEvent(
             "click", {
               bubbles: true,
@@ -222,18 +223,22 @@ console.log('set handler for track' + trackCount + ' ' + gpxFile);
             }
           );
 
+          // close menu
+          app.closeMenu();
+
           // TODO there is only an event on the first entry, how does this work
           // to switch from one page to an other page?
           document.querySelector('div#tabpane ul li').dispatchEvent(evt);
 
-          // close menu
-          app.closeMenu();
-
-console.log('load track from ' + gpxFile);
+console.log('load track from ' + trackFile);
           // center and fit on new track
-          app.loadTrack(gpxFile);
-        }
-      );
+          app.loadTrack(trackFile);
+        };
+      }
+
+      // set a click handler on the li element to close the menu and
+      // to show the map again.
+      gpxElement.addEventListener( "click", loadTrack(gpxFile));
     }
 
     // ------------------------------------------------------------------------

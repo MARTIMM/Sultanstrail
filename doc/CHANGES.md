@@ -1,4 +1,6 @@
 
+* 0.4.2
+  * bug fixed, all routes from track list are selectable with proper result
 * 0.4.1
   * Removed `goog.events.*` and `goog.math` because event handling is done differently and math is not needed anymore (yet).
   * Removed `goog.style.*` and replaced by standard `style` on an `Element`

@@ -231,46 +231,54 @@ html body table tr td {
 
 <h2 class="mume-header" id="purpose">Purpose</h2>
 
-<p>Purpose of this document is to show what is to be created whithout being too restrictive at the start what the outcome should be. Furthermore, it shows what is planned and what steps are made to come to the end product.</p>
+<p>Purpose of this document is to show what is to be created without being too restrictive at the start what the outcome should be. Furthermore, it shows what is planned and what steps are made to come to the end product.</p>
 <p>Communication will be done by sending this document to the contacts after which there will be some comments, additions, changes or removals. This will be visible later in this document in the design and planning.</p>
 <h1 class="mume-header" id="design">Design</h1>
 
-<h2 class="mume-header" id="wireframes">Wireframes</h2>
+<h2 class="mume-header" id="wire-frames">Wire frames</h2>
 
 <h3 class="mume-header" id="purpose-1">Purpose</h3>
 
-<p>Purpose of wireframes is that it will be visible how the application will look like. There are good programs for this but in this document I will only use the pictures from a designing program and make notes with it.</p>
+<p>Purpose of wire frames is that it will be visible how the application will look. There are good programs for this but in this document I will only use the pictures from a designing program and make notes with it.</p>
 <h3 class="mume-header" id="start-page">Start page</h3>
 
 <p><img src="https://i.imgur.com/84rx86e.png" alt="start_page"></p>
 <ul>
-<li><input type="checkbox" class="task-list-item-checkbox" checked> Map displayed, move around with swipe
+<li><input type="checkbox" class="task-list-item-checkbox" checked> Map displayed, move around with swipe.
 <ul>
-<li><input type="checkbox" class="task-list-item-checkbox"> Start with overview of whole route</li>
-<li><input type="checkbox" class="task-list-item-checkbox"> Show sultans trail track</li>
-<li><input type="checkbox" class="task-list-item-checkbox"> Show features for starting scale of map</li>
-<li><input type="checkbox" class="task-list-item-checkbox"> Show dashed line to closest point on the trail when off trail</li>
+<li><input type="checkbox" class="task-list-item-checkbox" checked> Map should fill page automatically as well as the other pages.</li>
+<li><input type="checkbox" class="task-list-item-checkbox" checked> Show sultans trail track.</li>
+<li><input type="checkbox" class="task-list-item-checkbox" checked> Focus on track. Re-scale map after showing track for a more or less exact fit.</li>
+<li><input type="checkbox" class="task-list-item-checkbox"> Map, Menu and buttons must be adjusted when device is rotated.</li>
+<li><input type="checkbox" class="task-list-item-checkbox"> Show current location using GPS.</li>
+<li><input type="checkbox" class="task-list-item-checkbox"> Show dashed line from current location to closest point on the trail when off trail (further than, lets say, 1 kilometer).</li>
+<li><input type="checkbox" class="task-list-item-checkbox"> Show features for starting scale of map.</li>
 </ul>
 </li>
 <li><input type="checkbox" class="task-list-item-checkbox" checked> Zoom buttons
 <ul>
-<li><input type="checkbox" class="task-list-item-checkbox" checked> zooming with buttons</li>
-<li><input type="checkbox" class="task-list-item-checkbox" checked> zooming by pinching (on mobile device)</li>
-<li><input type="checkbox" class="task-list-item-checkbox"> Reveal more features when zooming in</li>
-<li><input type="checkbox" class="task-list-item-checkbox"> Remove features when zooming out</li>
+<li><input type="checkbox" class="task-list-item-checkbox" checked> zooming with buttons.</li>
+<li><input type="checkbox" class="task-list-item-checkbox" checked> zooming by pinching (on mobile device).</li>
+<li><input type="checkbox" class="task-list-item-checkbox"> Reveal more features when zooming in.</li>
+<li><input type="checkbox" class="task-list-item-checkbox"> Remove features when zooming out.</li>
 </ul>
 </li>
-<li><input type="checkbox" class="task-list-item-checkbox" checked> <img src="https://i.imgur.com/YXlRYff.png" alt="NorthArrow"> North arrow button, click action aligns map to the north</li>
-<li><input type="checkbox" class="task-list-item-checkbox" checked> OSM attribution</li>
-<li><input type="checkbox" class="task-list-item-checkbox"> <img src="https://i.imgur.com/AX1bM22.png" alt="responsive"> Responsive button, open pane on the side with some choices</li>
+<li><input type="checkbox" class="task-list-item-checkbox" checked> <img src="https://i.imgur.com/YXlRYff.png" alt="NorthArrow"> North arrow button, click action aligns map to the north.</li>
+<li><input type="checkbox" class="task-list-item-checkbox" checked> OSM attribution.</li>
+<li><input type="checkbox" class="task-list-item-checkbox" checked> <img src="https://i.imgur.com/AX1bM22.png" alt="responsive"> Open menu on the right side with some choices.</li>
 </ul>
-<h3 class="mume-header" id="pressing-responsive-button">Pressing Responsive button</h3>
+<h3 class="mume-header" id="pressing-menu-button">Pressing Menu button</h3>
 
 <p>Pressing the responsive button will open a pane from the side to show a menu of options.</p>
-<p><img src="https://i.imgur.com/LdbdIDN.png" alt="reveal_pane"></p>
+<p><img src="https://i.imgur.com/LdbdIDN.png" alt="reveal_pane"> Show menu</p>
 <ul>
-<li><input type="checkbox" class="task-list-item-checkbox"> Exit, close the application</li>
-<li><input type="checkbox" class="task-list-item-checkbox"> About, show a page with version, people and contacts</li>
+<li><input type="checkbox" class="task-list-item-checkbox" checked> <strong>Map</strong>: show map and remove menu when clicked</li>
+<li><input type="checkbox" class="task-list-item-checkbox"> <strong>Info</strong>: show route info</li>
+<li><input type="checkbox" class="task-list-item-checkbox"> <strong>Tracks</strong>: Select a track. Show map again when a selection is made. The route is centered and fitted.</li>
+<li><input type="checkbox" class="task-list-item-checkbox"> <strong>Feature</strong> show all of the history, or other info. Is filled when feature is clicked. First a balloon is showed on the map pointing to the feature with text and a 'more ...' on the bottom.</li>
+<li><input type="checkbox" class="task-list-item-checkbox"> <strong>Start</strong>: record your track data</li>
+<li><input type="checkbox" class="task-list-item-checkbox"> <strong>About</strong>: show a page with version, people and contacts</li>
+<li><input type="checkbox" class="task-list-item-checkbox"> <strong>Exit</strong>: close the application</li>
 </ul>
 <h2 class="mume-header" id="items-or-problems-to-think-about">Items or problems to think about</h2>
 
@@ -278,14 +286,124 @@ html body table tr td {
 <li><input type="checkbox" class="task-list-item-checkbox"> Color mapping must match that of the maps printed on paper.</li>
 <li><input type="checkbox" class="task-list-item-checkbox"> Add ability to choose other color maps for visual impaired or color blind people.</li>
 <li><input type="checkbox" class="task-list-item-checkbox"> By what license should the project be protected</li>
-<li><input type="checkbox" class="task-list-item-checkbox"> When clicking on a feature on the map, does the information show in a ballon or on a new page. Feature information;
+<li><input type="checkbox" class="task-list-item-checkbox"> When clicking on a feature on the map, does the information show in a balloon or on a new page. Feature information;
 <ul>
 <li><input type="checkbox" class="task-list-item-checkbox"> Restaurant - reservation information and facility</li>
 <li><input type="checkbox" class="task-list-item-checkbox"> Hotel etc - booking information and facility</li>
 <li><input type="checkbox" class="task-list-item-checkbox"> Mosque - historic background</li>
-<li><input type="checkbox" class="task-list-item-checkbox"> City, village - historic background, city elders contact info, etci</li>
+<li><input type="checkbox" class="task-list-item-checkbox"> City, village - historic background, city elders contact info, etc.</li>
 </ul>
 </li>
+<li>When online
+<ul>
+<li><input type="checkbox" class="task-list-item-checkbox"> When confirmed, refresh maps in cache</li>
+<li><input type="checkbox" class="task-list-item-checkbox"> Try to get weather forecast and cache this information too</li>
+</ul>
+</li>
+</ul>
+<h2 class="mume-header" id="track-data">Track data</h2>
+
+<p>The app uses gpx data to read track information, show it and focus on it when first loaded. These gpx files must be edited (by a separate program) to add some data in the metadata section and extensions section of the gpx file.</p>
+<ul>
+<li>
+<p><input type="checkbox" class="task-list-item-checkbox" checked> Program to make the calculations and store in gpx file: <code>gpx-edit.pl6</code>.</p>
+<ul>
+<li><input type="checkbox" class="task-list-item-checkbox" checked> Calculate minimum and maximum of longitude and latitude so the app doesn't have to do it.</li>
+<li><input type="checkbox" class="task-list-item-checkbox" checked> Calculate the center of the track for the same reason.</li>
+<li><input type="checkbox" class="task-list-item-checkbox" checked> metadata
+<ul>
+<li><input type="checkbox" class="task-list-item-checkbox" checked> name; filename without '.gpx' and punctuation replaced by spaces.</li>
+<li><input type="checkbox" class="task-list-item-checkbox" checked> desc; &quot;hiking routes from Vienna to Istanbul&quot;.</li>
+<li><input type="checkbox" class="task-list-item-checkbox" checked> author; &quot;Sultanstrail&quot;.</li>
+<li><input type="checkbox" class="task-list-item-checkbox" checked> copyright; &quot;Sultanstrail&quot;.</li>
+<li><input type="checkbox" class="task-list-item-checkbox" checked> link; &quot;<a href="http://www.sultanstrail.com/">http://www.sultanstrail.com/</a>&quot;.</li>
+<li><input type="checkbox" class="task-list-item-checkbox" checked> time; date and time of conversion.</li>
+<li><input type="checkbox" class="task-list-item-checkbox" checked> keywords; &quot;hike&quot;, &quot;Vienna&quot;, &quot;Istanbul&quot; and some others taken from the filename.</li>
+<li><input type="checkbox" class="task-list-item-checkbox"> bounds; not used</li>
+<li><input type="checkbox" class="task-list-item-checkbox"> extensions; not used</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><input type="checkbox" class="task-list-item-checkbox" checked> Remove all spaces between elements thereby making the gpx file smaller.</p>
+</li>
+<li>
+<p><input type="checkbox" class="task-list-item-checkbox" checked> Program to convert all tracks using above program: <code>convert-all-tracks.pl6</code>.</p>
+<ul>
+<li><input type="checkbox" class="task-list-item-checkbox" checked> Convert tracks one by one.</li>
+<li><input type="checkbox" class="task-list-item-checkbox"> Compress the track to a smaller format to make the payload smaller.</li>
+</ul>
+</li>
+<li>
+<p><input type="checkbox" class="task-list-item-checkbox"> Start showing the sultanstrail icon and only show content when everything is ready in the background. This provides a better user experience.</p>
+</li>
+</ul>
+<h2 class="mume-header" id="javascript">Javascript</h2>
+
+<ul>
+<li><input type="checkbox" class="task-list-item-checkbox"> In the process of making the javascript library payload smaller it is possible to change several calls to the google library into plain available calls
+<ul>
+<li><input type="checkbox" class="task-list-item-checkbox" checked> Replace <code>goog.events.Listener</code> by standard <code>addEventListener</code> and <code>dispatchEvent</code> with <code>MouseEvent</code>.</li>
+<li><input type="checkbox" class="task-list-item-checkbox" checked> <code>goog.dom</code> by standard <code>querySelect()</code>, <code>querySelectAll()</code> and <code>document.createElement</code></li>
+<li><input type="checkbox" class="task-list-item-checkbox"> goog.ui.TabPane</li>
+<li><input type="checkbox" class="task-list-item-checkbox" checked> Replace <code>goog.style</code> with standard <code>style</code> on DOM elements</li>
+<li><input type="checkbox" class="task-list-item-checkbox"> goog.fx</li>
+<li><input type="checkbox" class="task-list-item-checkbox"> goog.fx.dom</li>
+<li><input type="checkbox" class="task-list-item-checkbox" checked> Replace <code>goog.dom.ViewportSizeMonitor</code> by standard <code>window.innerWidth</code> and <code>window.innerHeight</code>.</li>
+</ul>
+</li>
+</ul>
+<h2 class="mume-header" id="events-to-listen-to">Events to listen to</h2>
+
+<p>There are several events which can happen upon changing conditions in a device. These must be captured for further actions. No events are described wgich are caused by pressing a button or something like that.</p>
+<ul>
+<li><input type="checkbox" class="task-list-item-checkbox"> Battery conditions:
+<ul>
+<li>Warn user of battery low state. Can dim display or other options to save energy.</li>
+</ul>
+</li>
+<li><input type="checkbox" class="task-list-item-checkbox"> Gps information.
+<ul>
+<li>Show current location</li>
+<li>Record track of user</li>
+</ul>
+</li>
+<li><input type="checkbox" class="task-list-item-checkbox"> Network on and off line mode. When on then
+<ul>
+<li>It is possible to update maps</li>
+<li>Send out walked tracks</li>
+</ul>
+</li>
+<li><input type="checkbox" class="task-list-item-checkbox"> Device orientation.
+<ul>
+<li>To show map correctly pointing the map-north to the real north.</li>
+</ul>
+</li>
+<li><input type="checkbox" class="task-list-item-checkbox"> Camera.
+<ul>
+<li>To add the picture as a point on the map when saved.</li>
+</ul>
+</li>
+<li><input type="checkbox" class="task-list-item-checkbox"> Time and clock.
+<ul>
+<li>Show date and time.</li>
+</ul>
+</li>
+</ul>
+<h2 class="mume-header" id="operating-system-dependencies">Operating system dependencies</h2>
+
+<ul>
+<li><input type="checkbox" class="task-list-item-checkbox"> Android: App, version?</li>
+<li><input type="checkbox" class="task-list-item-checkbox"> IOS: App, version?</li>
+<li><input type="checkbox" class="task-list-item-checkbox"> Windows: App, version?</li>
+<li><input type="checkbox" class="task-list-item-checkbox"> Linux: App and browsers Firefox, Opera?, Chrome?</li>
+</ul>
+<h2 class="mume-header" id="bugs">Bugs</h2>
+
+<ul>
+<li><input type="checkbox" class="task-list-item-checkbox"> Hangup after a while when swiping etc. over the map</li>
+<li><input type="checkbox" class="task-list-item-checkbox"> Gpx file are missing a proper xml prefix after conversion</li>
 </ul>
 <h2 class="mume-header" id="planning">Planning</h2>
 
@@ -295,7 +413,7 @@ html body table tr td {
 
   section Design
   write requirements and design doc :active, req, 2017-10-10, 10w
-  draw wireframes                   :active, wire, 2017-10-11, 5w
+  draw wireframes                   :active, wire, 2017-10-11, 6w
   write manual                      : man, after wire, 2w
 
   section Implementation
@@ -324,19 +442,19 @@ html body table tr td {
 </thead>
 <tbody>
 <tr>
-<td>Sedat Cakir</td>
+<td>Sedat Çakir</td>
 <td><a href="mailto:sufitrail@gmail.com">sufitrail@gmail.com</a></td>
 <td>Project leader</td>
 </tr>
 <tr>
 <td>Iris Bezuijen</td>
 <td><a href="mailto:sufitrail@gmail.com">sufitrail@gmail.com</a></td>
-<td>Web Master</td>
+<td>Web master</td>
 </tr>
 <tr>
 <td>Rob Polko</td>
 <td><a href="mailto:rob@sultanstrail.nl">rob@sultanstrail.nl</a></td>
-<td>Map Design</td>
+<td>Map design</td>
 </tr>
 <tr>
 <td>Tine Lambers</td>
@@ -344,14 +462,19 @@ html body table tr td {
 <td>Office Manager</td>
 </tr>
 <tr>
-<td>Pijke Wees</td>
+<td>Merel van Essen</td>
 <td></td>
-<td>Cartograaf</td>
+<td>Writer of handbook</td>
+</tr>
+<tr>
+<td>Pijke Wees</td>
+<td><a href="mailto:pijkev@hotmail.com">pijkev@hotmail.com</a></td>
+<td>Cartographer</td>
 </tr>
 <tr>
 <td>Marcel Timmerman</td>
 <td><a href="mailto:mt1957@gmail.com">mt1957@gmail.com</a></td>
-<td>Application Builder</td>
+<td>Application builder</td>
 </tr>
 </tbody>
 </table>
@@ -365,14 +488,19 @@ html body table tr td {
 </li>
 <li><a href="#design">Design</a>
 <ul>
-<li><a href="#wireframes">Wireframes</a>
+<li><a href="#wire-frames">Wire frames</a>
 <ul>
 <li><a href="#purpose-1">Purpose</a></li>
 <li><a href="#start-page">Start page</a></li>
-<li><a href="#pressing-responsive-button">Pressing Responsive button</a></li>
+<li><a href="#pressing-menu-button">Pressing Menu button</a></li>
 </ul>
 </li>
 <li><a href="#items-or-problems-to-think-about">Items or problems to think about</a></li>
+<li><a href="#track-data">Track data</a></li>
+<li><a href="#javascript">Javascript</a></li>
+<li><a href="#events-to-listen-to">Events to listen to</a></li>
+<li><a href="#operating-system-dependencies">Operating system dependencies</a></li>
+<li><a href="#bugs">Bugs</a></li>
 <li><a href="#planning">Planning</a></li>
 </ul>
 </li>
