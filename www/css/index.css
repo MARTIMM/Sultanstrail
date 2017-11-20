@@ -3,6 +3,9 @@
   License: ...
   Copyright: © Sufitrail 2017
 */
+* {
+  box-sizing: border-box;
+}
 
 html, body {
   margin: 0;
