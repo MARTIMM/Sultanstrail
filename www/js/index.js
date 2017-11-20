@@ -42,7 +42,9 @@ var SultansTrailMobileApp = {
   style: {
     'Point': new ol.style.Style( {
         image: new ol.style.Circle( {
-            fill:     new ol.style.Fill( { color: 'rgba(255,255,0,0.4)'}),
+            fill:     new ol.style.Fill(
+              { color: 'rgba(255,255,0,0.4)'}
+            ),
             radius:   5,
             stroke:   new ol.style.Stroke( {
                 color: '#ff0',
@@ -55,8 +57,8 @@ var SultansTrailMobileApp = {
     ),
     'LineString': new ol.style.Style( {
         stroke: new ol.style.Stroke( {
-            color: '#f00',
-            width: 3
+            color: '#a48',
+            width: 4
           }
         )
       }
@@ -64,7 +66,7 @@ var SultansTrailMobileApp = {
     'MultiLineString': new ol.style.Style( {
         stroke: new ol.style.Stroke( {
             color: '#0f0',
-            width: 3
+            width: 4
           }
         )
       }
@@ -403,7 +405,7 @@ console.log('Load: ' + file);
           }
         ),
         style: function ( feature ) {
-          return app.style['LineString'];        // [feature.getGeometry().getType()];
+          return app.style['LineString'];     // [feature.getGeometry().getType()];
         }
       }
     );
